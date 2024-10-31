@@ -118,8 +118,8 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 For a deeper dive into contributing and understanding the project:
 - **Contribution Guidelines**: Tips for contributing to VissiPass.
 - **Code of Conduct**: Expected behavior for contributors.
-- **Issues**: [Report issues here](#)
-- **Pull Requests**: [Submit improvements here](#)
+- **Issues**: [Report issues here](./github/ISSUE_TEMPLATE/feature_request.yaml)
+- **Pull Requests**: [Submit improvements here](./github/pull_request_template.md)
 
 ---
 
