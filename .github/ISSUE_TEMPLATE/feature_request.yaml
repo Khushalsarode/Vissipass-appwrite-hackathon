@@ -1,0 +1,55 @@
+name: Feature Request
+description: Suggest an idea or improvement for VissiPass
+title: "🆕[FEATURE] <short description of feature>"
+labels: 
+  - enhancement
+  - documentation
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Is your feature request related to a problem? Please describe.**
+        A clear and concise description of what the problem is. Ex: "I’m frustrated when ..."
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: 'Problem Description'
+      placeholder: 'Describe the problem that the feature would solve...'
+
+  - type: markdown
+    attributes:
+      value: |
+        **Describe the Solution You'd Like**
+        A clear and concise description of what you want to happen.
+
+  - type: textarea
+    id: solution-description
+    attributes:
+      label: 'Solution Description'
+      placeholder: 'Describe your suggested solution...'
+
+  - type: markdown
+    attributes:
+      value: |
+        **Describe Alternatives You've Considered**
+        A clear and concise description of any alternative solutions or features you’ve considered.
+
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: 'Alternatives Considered'
+      placeholder: 'Describe any alternative solutions...'
+
+  - type: markdown
+    attributes:
+      value: |
+        **Additional Context**
+        Add any other context or screenshots about the feature request here.
+        
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 'Additional Context'
+      placeholder: 'Provide any additional context...'
