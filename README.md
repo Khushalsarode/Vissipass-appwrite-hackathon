@@ -103,13 +103,13 @@ We’re open to contributions! To get involved:
 5. **Push to the branch**: `git push origin feature-branch`
 6. **Open a Pull Request**
 
-Please review our [Contribution Guidelines](#) and follow the [Code of Conduct](#).
+Please review our [Contribution Guidelines](./CONTRIBUTING.md:) and follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## 📝 Code of Conduct
 Our Project is guided by the Contributor Covenant Code of Conduct. Please respect these guidelines, and reach out to us at khushalsarode@gmail.com if you have any concerns.
 
 ## 📜 License
-This project is licensed under the MIT License. See the [LICENSE](#) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ## 🙋 Maintainer
 - **GitHub**: [@khushalsarode](https://github.com/khushalsarode)
