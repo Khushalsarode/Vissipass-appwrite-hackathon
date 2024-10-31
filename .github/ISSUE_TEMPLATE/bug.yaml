@@ -1,0 +1,39 @@
+name: Bug Report
+description: Report a bug to help us improve VissiPass
+title: "[BUG] <short description of bug>"
+labels: bug
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Describe the Bug**
+        A clear and concise description of the bug.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 'Describe the Bug'
+      placeholder: 'Enter a detailed description of the bug...'
+      description: 'Please include any steps to reproduce the issue.'
+
+  - type: markdown
+    attributes:
+      value: |
+        **Screenshots**
+        If applicable, add screenshots to help explain your problem.
+
+  - type: markdown
+    attributes:
+      value: |
+        **Environment (please complete the following information):**
+        - OS: [e.g., iOS]
+        - Browser [e.g., Chrome, Safari]
+        - Version [e.g., 22]
+        
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 'Additional Context'
+      placeholder: 'Provide any additional context...'
