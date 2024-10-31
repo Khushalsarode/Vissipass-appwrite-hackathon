@@ -1,0 +1,23 @@
+/* src/components/GeneratedPass.css */
+.generated-pass {
+    padding: 20px;
+}
+
+.record-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.record-table th, .record-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.record-table th {
+    background-color: #f2f2f2;
+}
+.record-image {
+    border-radius: 50%; /* Optional: Makes the image round */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}

@@ -1,0 +1,51 @@
+/* src/components/Dashboard.css */
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-message {
+    font-size: 1.1em;
+    color: #6c757d; /* Gray color for the message */
+}
+
+.dashboard-content {
+    width: 100%;
+    max-width: 800px; /* Limit max width for better readability */
+}
+
+.dashboard-section {
+    background: white; /* White background for sections */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Rounded corners for sections */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.2s; /* Animation on hover */
+}
+
+.dashboard-section:hover {
+    transform: translateY(-2px); /* Slightly lift the section on hover */
+}
+
+.dashboard-section h2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space below headings */
+    font-size: 1.5em; /* Larger heading size */
+    color: #343a40; /* Darker text for headings */
+}
+
+.dashboard-section p {
+    color: #495057; /* Dark gray color for text */
+}

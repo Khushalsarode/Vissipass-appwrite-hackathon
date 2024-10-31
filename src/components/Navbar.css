@@ -1,0 +1,78 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-name {
+    margin: 0;
+    font-size: 24px;
+}
+
+.tagline {
+    margin: 5px 0 15px;
+    font-style: italic;
+}
+
+.nav-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-menu li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+/* src/components/Navbar.css */
+/* src/components/Navbar.css */
+
+.profile-section {
+    position: relative; /* Position relative for the dropdown */
+}
+
+.profile-dropdown {
+    position: absolute; /* Absolute position for the dropdown */
+    background: white; /* Dropdown background */
+    border: 1px solid #ddd; /* Border for the dropdown */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
+    padding: 10px; /* Padding for the dropdown content */
+    z-index: 10; /* Ensure it appears above other content */
+}
+
+.profile-dropdown p {
+    margin: 5px 0; /* Spacing between paragraphs */
+    color: #333; /* Text color */
+}
+
+.logout-button {
+    background-color: #ff4d4d; /* Logout button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded button */
+    padding: 5px 10px; /* Button padding */
+    cursor: pointer; /* Pointer cursor for button */
+}
+
+.logout-button:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}

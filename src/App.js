@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './components/HomePage';
+import AboutPage from './components/AboutPage';
+import Dashboard from './components/Dashboard';
+import RecordList from './components/RecordList'; // Import the RecordList component
+import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import { UserProvider } from './lib/context/user';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Generatepass from './components/generatepass';
+import Generatedpass from './components/generatedpass';
+import DailyRecordChecker from './components/activepasscheck';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <UserProvider>
+            <Router>
+                <div className="App">
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/record-list"
+                            element={
+                                <ProtectedRoute>
+                                    <RecordList />
+                                </ProtectedRoute>
+                            }
+                        />
+                         <Route
+                            path="/generate-pass"
+                            element={
+                                <ProtectedRoute>
+                                    <Generatepass />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/Generated-pass"
+                            element={
+                                <ProtectedRoute>
+                                    <Generatedpass />
+                                </ProtectedRoute>
+                            }
+                        />
+                         <Route
+                            path="/RecordChecker"
+                            element={
+                                <ProtectedRoute>
+                                    <DailyRecordChecker />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                    <ToastContainer />
+                </div>
+            </Router>
+        </UserProvider>
+    );
 }
 
 export default App;

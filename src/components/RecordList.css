@@ -1,0 +1,44 @@
+/* src/components/RecordList.css */
+.record-list {
+    padding: 20px;
+}
+
+.record-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.record-table th, .record-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.accept-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.deny-button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.accept-button:hover {
+    background-color: #45a049;
+}
+
+.deny-button:hover {
+    background-color: #d32f2f;
+}
+.record-image {
+    border-radius: 50%; /* Optional: Makes the image round */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}
