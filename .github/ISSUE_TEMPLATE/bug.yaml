@@ -2,7 +2,6 @@ name: Bug Report
 description: Report a bug to help us improve VissiPass
 title: "[BUG] <short description of bug>"
 labels: bug
-assignees: ''
 
 body:
   - type: markdown
