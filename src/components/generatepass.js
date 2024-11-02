@@ -10,7 +10,7 @@ const VisitorPassForm = () => {
     const [formVisible, setFormVisible] = useState(true); // State to control form visibility
     const [userImage, setUserImage] = useState(null); // State for user image
     const [imageFile, setImageFile] = useState(null); // State for the actual file
-
+    const bucketId = process.env.REACT_APP_APPWRITE_STORAGE_BUCKET_ID; // Replace with your storage bucket ID
     const initialValues = {
         firstName: '',
         lastName: '',
@@ -57,22 +57,22 @@ const VisitorPassForm = () => {
             };
 
             // Define your database and collection IDs
-            const databaseId = 'id'; // Replace with your database ID
-            const collectionId = 'id'; // Replace with your collection ID
+            const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID; // Replace with your database ID
+            const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_USERDATAPASS; // Replace with your collection ID
             const documentId = ID.unique(); // Generate a unique document ID
 
             // Handle the image upload to Appwrite Storage
             let imageUrl = null;
             if (imageFile) {
                 const imageResponse = await storage.createFile(
-                    'id', // Replace with your storage bucket ID
+                    bucketId, // Replace with your storage bucket ID
                     ID.unique(),
                     imageFile
                 );
 
                 // Construct the full image URL
-                const projectId = 'id'; // Your Appwrite project ID
-                imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/67234ad60025be69fa97/files/${imageResponse.$id}/view?project=${projectId}&mode=admin`;
+                const projectId = process.env.REACT_APP_APPWRITE_PROJECT_ID; // Your Appwrite project ID
+                imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${imageResponse.$id}/view?project=${projectId}&mode=admin`;
             }
 
             // Include the user image in the submission if necessary

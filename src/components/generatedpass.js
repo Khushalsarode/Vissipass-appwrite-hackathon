@@ -6,8 +6,8 @@ import './GeneratedPass.css';
 
 const GeneratedPass = () => {
     const [records, setRecords] = useState([]);
-    const databaseId = 'id';
-    const collectionId = 'id';
+    const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID;
+    const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_USERDATAPASS;
 
     const fetchRecords = async () => {
         try {

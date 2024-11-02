@@ -4,8 +4,8 @@ import { Client, Account, Databases, Storage, Functions, ID, AuthenticatorType, 
 // Initialize the Appwrite client
 const client = new Client();
 client
-    .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite endpoint
-    .setProject('id'); // Your Appwrite project ID
+    .setEndpoint(process.env.REACT_APP_APPWRITE_ENDPOINT) // Your Appwrite endpoint
+    .setProject(process.env.REACT_APP_APPWRITE_PROJECT_ID); // Your Appwrite project ID
 
 // Export commonly used Appwrite services
 export const account = new Account(client);         // For user authentication

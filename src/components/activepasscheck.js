@@ -3,8 +3,8 @@ import { databases } from '../lib/appwrite'; // Import Appwrite SDK configuratio
 
 const RecordChecker = () => {
     const [tomorrowRecords, setTomorrowRecords] = useState([]);
-    const databaseId = 'id'; // Replace with your actual database ID
-    const collectionId = 'id'; // Replace with your actual collection ID
+    const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID; // Replace with your actual database ID
+    const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_ACTIVEPASS; // Replace with your actual collection ID
 
     useEffect(() => {
         fetchTomorrowRecords();

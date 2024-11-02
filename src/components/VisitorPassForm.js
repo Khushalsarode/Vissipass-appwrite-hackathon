@@ -57,22 +57,23 @@ const VisitorPassForm = () => {
             dataToSubmit.dateOfVisit = formattedDate; // Store the formatted date
 
             // Define your database and collection IDs
-            const databaseId = 'id'; // Replace with your database ID
-            const collectionId = 'id'; // Replace with your collection ID
+            const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID; // Replace with your database ID
+            const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_INITIALUSERSDATA; // Replace with your collection ID
             const documentId = ID.unique(); // Generate a unique document ID
 
             // Handle the image upload to Appwrite Storage
             let imageUrl = null;
             if (imageFile) {
                 const imageResponse = await storage.createFile(
-                    'id', // Replace with your storage bucket ID
+                    bucketId, 
                     ID.unique(),
                     imageFile
                 );
 
                 // Construct the full image URL
-                const projectId = '6721f3e9001cc11d592b'; // Your Appwrite project ID
-                imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/67234ad60025be69fa97/files/${imageResponse.$id}/view?project=${projectId}&mode=admin`;
+                const projectId = process.env.REACT_APP_APPWRITE_PROJECT_ID; // Your Appwrite project ID
+                const bucketId = process.env.REACT_APP_APPWRITE_STORAGE_BUCKET_ID; // Your Appwrite storage bucket ID
+                imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${imageResponse.$id}/view?project=${projectId}&mode=admin`;
             }
 
             // Include the user image in the submission if necessary

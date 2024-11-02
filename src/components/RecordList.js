@@ -7,9 +7,9 @@ const RecordList = () => {
     const [records, setRecords] = useState([]);
 
     // Replace with your database and collection IDs
-    const databaseId = 'id'; 
-    const collectionId = 'id';
-    const acceptedCollectionId = 'id'; // ID of the collection for accepted records
+    const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID; 
+    const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_INITIALUSERSDATA;
+    const acceptedCollectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_USERDATAPASS; // ID of the collection for accepted records
 
     // Fetch records from the Appwrite collection
     const fetchRecords = async () => {
