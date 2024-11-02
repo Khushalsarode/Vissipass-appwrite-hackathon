@@ -1,5 +1,5 @@
 // src/lib/appwrite.js
-import { Client, Account, Databases, Storage, Functions, ID, AuthenticatorType, Messaging } from 'appwrite';
+import { Client, Account, Databases, Storage, Functions, ID, AuthenticatorType, Messaging  } from 'appwrite';
 
 // Initialize the Appwrite client
 const client = new Client();
@@ -11,7 +11,7 @@ client
 export const account = new Account(client);         // For user authentication
 export const databases = new Databases(client);     // For database operations
 export const storage = new Storage(client);         // For file storage
-export const functions = new Functions(client);     // For cloud functions execution
-export const messaging = new Messaging(client);     // For messaging/email functionality
+export const functions = new Functions(client);     // For cloud functions execution yet to be used for QR code scan and email sending
+export const messaging = new Messaging(client);     // For messaging/email functionality yet to be used for email sending for generated and expired pass
 
 export { AuthenticatorType, client, ID };

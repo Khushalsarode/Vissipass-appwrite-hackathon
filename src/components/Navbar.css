@@ -71,6 +71,8 @@
     border-radius: 5px; /* Rounded button */
     padding: 5px 10px; /* Button padding */
     cursor: pointer; /* Pointer cursor for button */
+    width: 90%; /* Full width button */
+    height: 30px; /* Button height */
 }
 
 .logout-button:hover {

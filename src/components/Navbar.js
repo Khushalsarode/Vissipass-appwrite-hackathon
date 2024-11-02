@@ -4,15 +4,25 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useUser } from '../lib/context/user';
-import { account } from '../lib/appwrite';
+import { account, client} from '../lib/appwrite';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons'; // Import the user icon
+//import { Avatars } from "appwrite";
 
 const Navbar = () => {
     const { isAuthenticated, userData, setIsAuthenticated } = useUser();
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
+  { /* 
+    //user profile icon code   
+    const avatars = new Avatars(client);
+
+    const result = avatars.getFavicon(
+        'url' // url
+    );
+    
+*/ }
 
     const handleLogout = async () => {
         if (!isAuthenticated) {
@@ -55,8 +65,12 @@ const Navbar = () => {
                                 />
                                 {showDropdown && (
                                     <div className="profile-dropdown">
-                                        <p><strong>{userData.username}</strong></p> {/* Added username */}
-                                        <p>Email: {userData.email}</p>
+                                        <p>Logged in User:</p>
+                                       {/*  //user profile icon code in popup
+                                       <img src={result} alt="User Avatar" className="user-avatar" />  */}
+                                        <p>Access Level: <strong>Admin</strong></p> {/* Added access level */}
+                                        <p>Username: <strong>{userData.name}</strong></p> {/* Added username */}
+                                        <p>Email: <strong>{userData.email}</strong></p>
                                         <button onClick={handleLogout} className="logout-button">Logout</button>
                                     </div>
                                 )}
