@@ -8,7 +8,7 @@ import { account, client} from '../lib/appwrite';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons'; // Import the user icon
-//import { Avatars } from "appwrite";
+import { Avatars } from "appwrite";
 
 const Navbar = () => {
     const { isAuthenticated, userData, setIsAuthenticated } = useUser();
@@ -16,13 +16,20 @@ const Navbar = () => {
     const navigate = useNavigate();
   { /* 
     //user profile icon code   
-    const avatars = new Avatars(client);
-
+    
     const result = avatars.getFavicon(
         'url' // url
     );
     
 */ }
+        const avatars = new Avatars(client);
+
+        const result = avatars.getImage(
+            'https://i.pinimg.com/originals/61/f7/5e/61f75ea9a680def2ed1c6929fe75aeee.jpg', // url
+            30, // width (optional)
+            30 // height (optional)
+        );
+
 
     const handleLogout = async () => {
         if (!isAuthenticated) {
@@ -65,9 +72,8 @@ const Navbar = () => {
                                 />
                                 {showDropdown && (
                                     <div className="profile-dropdown">
-                                        <p>Logged in User:</p>
-                                       {/*  //user profile icon code in popup
-                                       <img src={result} alt="User Avatar" className="user-avatar" />  */}
+                                        <p> <img src={result} alt="User Avatar" className="user-avatar" />  Logged in User:</p>
+                                       {/*  //user profile icon code in popup */}
                                         <p>Access Level: <strong>Admin</strong></p> {/* Added access level */}
                                         <p>Username: <strong>{userData.name}</strong></p> {/* Added username */}
                                         <p>Email: <strong>{userData.email}</strong></p>
