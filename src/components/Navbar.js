@@ -14,7 +14,8 @@ const Navbar = () => {
     const { isAuthenticated, userData, setIsAuthenticated } = useUser();
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
-  { /* 
+ 
+    { /* 
     //user profile icon code   
     
     const result = avatars.getFavicon(
