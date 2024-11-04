@@ -59,14 +59,9 @@ const Dashboard = () => {
                 setLocation(userDetails.location);
             };
 
-            // Fetch recent activity
-            const fetchRecentActivity = async () => {
-                const logs = await getLogs(userData.$id); // Pass user ID to get logs
-                setRecentActivity(logs); // Assuming logs are structured as an array of activity
-            };
+          
 
             fetchProfile();
-            fetchRecentActivity();
         }
     }, [theme, isAuthenticated, userData]);
 
