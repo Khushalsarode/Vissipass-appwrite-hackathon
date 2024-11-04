@@ -13,5 +13,4 @@ export const databases = new Databases(client);     // For database operations
 export const storage = new Storage(client);         // For file storage
 export const functions = new Functions(client);     // For cloud functions execution yet to be used for QR code scan and email sending
 export const messaging = new Messaging(client);     // For messaging/email functionality yet to be used for email sending for generated and expired pass
-
 export { AuthenticatorType, client, ID };

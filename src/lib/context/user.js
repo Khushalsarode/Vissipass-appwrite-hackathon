@@ -33,14 +33,25 @@ export function UserProvider({ children }) {
         }
     };
 
-    const register = async (email, password) => {
+    const register = async (email, password, fullName) => {
         try {
-            await account.create(ID.unique(), email, password);
+            await account.create(ID.unique(), email, password, fullName);
+            await sendVerificationEmail(); // Send verification email after registration
             await login(email, password);
-            toast.success('Registration successful, logged in!');
+            toast.success('Registration successful! Please check your email to verify your account.');
         } catch (error) {
             console.error("Registration error:", error.message);
             toast.error('Registration failed: ' + error.message);
+        }
+    };
+
+    const sendVerificationEmail = async () => {
+        try {
+            await account.createVerification('http://localhost:3000/verify'); // Replace with your actual verification URL
+            toast.success('Verification email sent! Please check your inbox.');
+        } catch (error) {
+            console.error("Verification error:", error.message);
+            toast.error('Failed to send verification email: ' + error.message);
         }
     };
 
@@ -73,7 +84,7 @@ export function UserProvider({ children }) {
     }, []);
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, userData, setIsAuthenticated, login, register, loginWithGoogle, loginWithGitHub }}>
+        <UserContext.Provider value={{ isAuthenticated, userData, setIsAuthenticated, login, register, loginWithGoogle, loginWithGitHub, sendVerificationEmail }}>
             {children}
         </UserContext.Provider>
     );

@@ -1,0 +1,18 @@
+#Appwrite user profile data console log of authernication and created stored user
+userDetails 
+Object
+  $createdAt: "2024-11-04T03:54:16.025+00:00"
+  $id: "6728456805d7cad684a8"
+  $updatedAt: "2024-11-04T03:54:16.107+00:00"
+  accessedAt: "2024-11-04T03:54:16.023+00:00"
+  email: "email@gmail.com"
+  emailVerification: true
+  labels: []mfa: false
+  name: "User Name"
+  passwordUpdate: ""
+  phone: ""
+  phoneVerification: false
+  prefs: {}
+  registration: "2024-11-04T03:54:16.023+00:00"
+  status: true
+  targets: [{…}][[Prototype]]: Object

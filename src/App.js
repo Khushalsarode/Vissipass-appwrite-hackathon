@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import Generatepass from './components/generatepass';
 import Generatedpass from './components/generatedpass';
 import DailyRecordChecker from './components/activepasscheck';
+import Verify from './components/Verify';
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/verify" element={<Verify />} />
                         <Route
                             path="/dashboard"
                             element={
