@@ -15,6 +15,7 @@ import Generatepass from './components/generatepass';
 import Generatedpass from './components/generatedpass';
 import DailyRecordChecker from './components/activepasscheck';
 import Verify from './components/Verify';
+import ResetPassword from './components/ResetPassword'; 
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/verify" element={<Verify />} />
+                        <Route path="/reset-password" element={<ResetPassword />} />
                         <Route
                             path="/dashboard"
                             element={

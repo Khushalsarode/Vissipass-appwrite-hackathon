@@ -1,10 +1,10 @@
-/* src/components/Login.css */
 .auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
     background-color: #f5f5f5; /* Light background */
+    padding-top: 10px;
 }
 
 .auth-card {
@@ -47,9 +47,7 @@
     gap: 10px; /* Space between buttons */
 }
 
-.button,
-.oauth-button {
-    background-color: #4CAF50; /* Green background */
+.button{
     color: white;
     border: none;
     padding: 12px; /* Consistent padding */
@@ -59,10 +57,47 @@
     font-size: 16px; /* Increased font size for better readability */
     transition: background-color 0.3s;
 }
+.oauth-button {
+    color: white;
+    border: none;
+    padding: 12px; /* Consistent padding */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px; /* Increased font size for better readability */
+    transition: background-color 0.3s;
+    padding-left: 100px;
+}
 
-.button:hover,
-.oauth-button:hover {
+.button {
+    background-color: #4CAF50; /* Green background for login/register */
+}
+
+.button:hover {
     background-color: #45a049; /* Darker green on hover */
+}
+
+.oauth-button {
+    display: flex;
+    align-items: center;
+    
+}
+
+.google-button {
+    background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853); /* Google gradient */
+    
+}
+
+.google-button:hover {
+    background: linear-gradient(90deg, #357ae8, #e53935, #f9a825, #28a745); /* Darker gradient on hover */
+}
+
+.github-button {
+    background-color: #333; /* Dark gray for GitHub */
+}
+
+.github-button:hover {
+    background-color: #444; /* Darker gray on hover */
 }
 
 .toggle-button {

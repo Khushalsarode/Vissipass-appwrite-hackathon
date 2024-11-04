@@ -41,6 +41,7 @@
 
 .nav-menu a:hover {
     text-decoration: underline;
+    color: greenyellow;
 }
 /* src/components/Navbar.css */
 /* src/components/Navbar.css */
