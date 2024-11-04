@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../lib/context/user';
-import { account, client,databases } from '../lib/appwrite';
+import { account, client,databases, storage } from '../lib/appwrite';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHistory, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHistory, faCog, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { Avatars, Flag, Locale  } from "appwrite";
 
 const Dashboard = () => {
@@ -16,7 +16,18 @@ const Dashboard = () => {
      const [currentPassword, setCurrentPassword] = useState('');
      const [newPassword, setNewPassword] = useState('');
      const [showChangePassword, setShowChangePassword] = useState(false); // To toggle visibility of change password form
- 
+    
+    const [loading, setLoading] = useState(true); // Loading state
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            setLoading(true);
+            setTimeout(() => {
+                setLoading(false); // Stop loading after 2 seconds
+            }, 2000);
+        }
+    }, [isAuthenticated]);
+
     const [profile, setProfile] = useState({
         username: '',
         email: '',
@@ -252,113 +263,135 @@ const Dashboard = () => {
     };
     
 
+
+    
+
+
     return (
-        <div className="dashboard">
-            <ToastContainer />
-            <header className="dashboard-header">
-                <h1>Welcome to Your Dashboard</h1>
-                {isAuthenticated && (
-                    <p className="welcome-message">
-                        Hello, <strong>{profile.username}</strong>! You are logged in. 
-                        Here you can view and manage your activities.
-                    </p>
-                )}
-            </header>
-            <div className="dashboard-content">
-                {/* Profile Overview Section */}
-                <section className="dashboard-section profile-overview">
-                    <h2><FontAwesomeIcon icon={faUser} /> &nbsp; Personl Information </h2>
-                    <p> User ID: {profile.userId}</p>
-                    <p>Username: {profile.username}</p>
-                    <p>Access Level: <strong>Admin</strong> </p>
-                    <p>Email: {profile.email}</p>
-                    <p>Member Since: {profile.createdAt}</p>
-                    <p>Location: {profile.location}</p>
-                    <p>Access Location: <img src={Cflag} alt="Profile" className="profile-picture" /></p>
-                    {/* <img src={profile.profilePicture} alt="Profile" className="profile-picture" /> */}
-                </section>
-
-                {/* Recent Activity Section */}
-                <section className="dashboard-section recent-activity">
-                    <h2><FontAwesomeIcon icon={faHistory} /> &nbsp; Recent Activity</h2>
-                    <ul>
-                        {recentActivity.map((activity, index) => (
-                            <li key={index}>
-                                {activity.event}: {new Date(activity.date).toLocaleString()}
-                            </li>
-                        ))}
-                    </ul>
-                    {/* Last Updated profile */}
-                    <strong>Last Updated:</strong><p> {new Date(profile.updatedAt).toLocaleString()}</p>
-                    {/* Last Access Log */}
-                    <strong>Last Access:</strong><p> {new Date(profile.log).toLocaleString()}</p>
-                
-                    <strong>Notification Preferences:</strong>
-                <ul>
-                    <li>Email: {profile.notificationPreferences.email ? 'Enabled' : 'Disabled'}</li>
-                    <li>SMS: {profile.notificationPreferences.sms ? 'Enabled' : 'Disabled'}</li>
-                    <li>In-App Notifications: {profile.notificationPreferences.inApp ? 'Enabled' : 'Disabled'}</li>
-                </ul>
-
-                    {/* Account Verification Status */}
-                    <h3>Account Verification Status</h3>
-                    <p>Status: {verificationStatus}</p>
-                    {/* Only show button if status is Pending and not prompted */}
-                    {verificationStatus === 'Pending' && !hasPromptedVerification && (
-                        <button onClick={handleVerification}>Validate Email</button>
+        <div>
+        {loading ? (
+           <div className="loading-screen">
+           <div className="spinner"></div><br/>
+           <div className="message">Loading...</div>
+       </div>       
+        ) : (
+            <>
+            <div className="dashboard">
+                <ToastContainer />
+                <header className="dashboard-header">
+                    <h1>Welcome to Your Dashboard</h1>
+                    {isAuthenticated && (
+                        <p className="welcome-message">
+                            Hello, <strong>{profile.username}</strong>! You are logged in. 
+                            Here you can view and manage your activities.
+                        </p>
                     )}
-                </section>
+                </header>
+                <div className="dashboard-content">
+                    {/* Profile Overview Section */}
+                    <section className="dashboard-section profile-overview">
+                        <h2><FontAwesomeIcon icon={faUser} /> &nbsp; Personl Information </h2>
+                        User ID: {profile.userId} <br/>
+                        Username: {profile.username} <br/>
+                        Access Level: <strong>Admin</strong> <br/>
+                        Email: {profile.email} <br/>
+                        Member Since: {profile.createdAt}   <br/>
+                        Location: {profile.location} <br/>
+                        Access Location: <img src={Cflag} alt="Profile" className="profile-picture" /> <br/>    
+                        {/* <img src={profile.profilePicture} alt="Profile" className="profile-picture" /> */}
+                    </section>
 
-                {/* Settings Section */}
-                <section className="dashboard-section settings">
-                    <h2><FontAwesomeIcon icon={faCog} /> &nbsp; Settings</h2>
-                    <div className="settings-options">
-                        {/* Theme Toggle */}
+                    {/* Recent Activity Section */}
+                    <section className="dashboard-section recent-activity">
+                        <h2><FontAwesomeIcon icon={faHistory} /> &nbsp; Recent Activity</h2>
+                        <ul>
+                            {recentActivity.map((activity, index) => (
+                                <li key={index}>
+                                    {activity.event}: {new Date(activity.date).toLocaleString()}
+                                </li>
+                            ))}
+                        </ul>
+                        {/* Last Updated profile */}
+                        <strong>Last Updated:</strong> {new Date(profile.updatedAt).toLocaleString()} <br/>
+                        {/* Last Access Log */}
+                        <strong>Last Access:</strong>{new Date(profile.log).toLocaleString()} <br/> 
                     
-                            <label>Theme: </label>
-                            <button onClick={toggleTheme} className="toggle-theme">
-                                {theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
+                        <strong>Notification Preferences:</strong>
+                    <ul>
+                        <li>Email: {profile.notificationPreferences.email ? 'Enabled' : 'Disabled'}</li>
+                        <li>SMS: {profile.notificationPreferences.sms ? 'Enabled' : 'Disabled'}</li>
+                        <li>In-App Notifications: {profile.notificationPreferences.inApp ? 'Enabled' : 'Disabled'}</li>
+                    </ul>
+
+                        {/* Account Verification Status */}
+                        <strong>Account Verification Status</strong> <br/>
+                        <strong>Status:</strong> {verificationStatus}
+                        {/* Only show button if status is Pending and not prompted */}
+                        {verificationStatus === 'Pending' && !hasPromptedVerification && (
+                            <button onClick={handleVerification}>Validate Email</button>
+                        )} <br/>
+                        {/* Last Password Change */}
+                        <strong>Last Password Change: </strong> {profile.lastPasswordChange}
+                    </section>
+
+                    {/* Application Analytics section */}
+                    <section className="dashboard-section analytics">
+                        <h2><FontAwesomeIcon icon={faChartLine} /> &nbsp; Application Analytics</h2>
+                        <p>Coming soon...</p>
+                                            
+                    </section>
+                    {/* Settings Section */}
+                    <section className="dashboard-section settings">
+                        <h2><FontAwesomeIcon icon={faCog} /> &nbsp; Settings</h2>
+                        <div className="settings-options">
+                            {/* Theme Toggle */}
+                        
+                                <label>Theme: </label>
+                                <button onClick={toggleTheme} className="toggle-theme">
+                                    {theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
+                                </button>
+
+                            <label>Account Access: </label>
+                            {/* Toggle Change Password Form */}
+                            <button onClick={() => setShowChangePassword(prev => !prev)}>
+                                {showChangePassword ? "Cancel Change Password" : "Change Password"}
                             </button>
 
-                        {/* Last Password Change */}
-                        <p>Last Password Change: {profile.lastPasswordChange}</p>
-                         {/* <button onClick={handleChangePassword}>Change Password</button> */}
-                        {/* Toggle Change Password Form */}
-                        <button onClick={() => setShowChangePassword(prev => !prev)}>
-                            {showChangePassword ? "Cancel Change Password" : "Change Password"}
-                        </button>
+                            {/* Change Password Form */}
+                            {showChangePassword && (
+                                <div className="change-password-form">
+                                    <input 
+                                        type="password" 
+                                        placeholder="Current Password" 
+                                        value={currentPassword} 
+                                        onChange={(e) => setCurrentPassword(e.target.value)} 
+                                    />
+                                    <input 
+                                        type="password" 
+                                        placeholder="New Password" 
+                                        value={newPassword} 
+                                        onChange={(e) => setNewPassword(e.target.value)} 
+                                    />
+                                    <button onClick={handleChangePassword}>Submit</button>
+                                </div>
+                            )}
 
-                        {/* Change Password Form */}
-                        {showChangePassword && (
-                            <div className="change-password-form">
-                                <input 
-                                    type="password" 
-                                    placeholder="Current Password" 
-                                    value={currentPassword} 
-                                    onChange={(e) => setCurrentPassword(e.target.value)} 
-                                />
-                                <input 
-                                    type="password" 
-                                    placeholder="New Password" 
-                                    value={newPassword} 
-                                    onChange={(e) => setNewPassword(e.target.value)} 
-                                />
-                                <button onClick={handleChangePassword}>Submit</button>
-                            </div>
-                        )}
+                            {/* Clear Cache */}
+                            <button onClick={handleClearCache} className="clear-cache">Clear Cache</button>
 
-                        {/* Clear Cache */}
-                        <button onClick={handleClearCache} className="clear-cache">Clear Cache</button>
+                            {/* Delete Data */}
+                            <button onClick={handleDeleteData} className="delete-data">Delete Data</button>
 
-                        {/* Delete Data */}
-                        <button onClick={handleDeleteData} className="delete-data">Delete Data</button>
-
-                        {/* Delete Account */}
-                        <button onClick={handleDeleteAccount} className="delete-account">Delete Account</button>
-                    </div>
-                </section>
+                            {/* Delete Account */}
+                            <button onClick={handleDeleteAccount} className="delete-account">Delete Account</button>
+                        </div>
+                    </section>
+                </div>
+            
             </div>
-        </div>
+        </>
+    )} 
+    </div> 
     );
 };
 

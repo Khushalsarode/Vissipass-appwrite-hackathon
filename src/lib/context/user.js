@@ -8,6 +8,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userData, setUserData] = useState(null);
+   
 
     // Check if the user is authenticated and fetch user data
     const checkAuth = async () => {
@@ -87,6 +88,7 @@ export function UserProvider({ children }) {
         <UserContext.Provider value={{ isAuthenticated, userData, setIsAuthenticated, login, register, loginWithGoogle, loginWithGitHub, sendVerificationEmail }}>
             {children}
         </UserContext.Provider>
+       
     );
 }
 

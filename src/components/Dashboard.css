@@ -23,6 +23,7 @@
 .dashboard-content {
     width: 100%;
     max-width: 800px; /* Limit max width for better readability */
+    
 }
 
 .dashboard-section {
@@ -108,4 +109,42 @@ body.dark {
 
 .dashboard .settings-options button:hover {
     opacity: 0.9;
+}
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+}
+
+.loading-screen .spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
+    border-top: 8px solid #ffffff; /* White color for the spinning section */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+.loading-screen .message {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

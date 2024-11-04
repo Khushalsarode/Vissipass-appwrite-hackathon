@@ -16,6 +16,8 @@ import Generatedpass from './components/generatedpass';
 import DailyRecordChecker from './components/activepasscheck';
 import Verify from './components/Verify';
 import ResetPassword from './components/ResetPassword'; 
+import { useUser } from './lib/context/user';
+import { useEffect, useState } from 'react';
 
 function App() {
     return (
