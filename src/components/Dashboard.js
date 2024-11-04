@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHistory, faCog } from '@fortawesome/free-solid-svg-icons';
-import { getLogs } from '../lib/logService'; // Adjust the path as necessary
 import { Avatars, Flag, Locale  } from "appwrite";
 
 const Dashboard = () => {
