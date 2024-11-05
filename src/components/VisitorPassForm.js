@@ -60,7 +60,7 @@ const VisitorPassForm = () => {
             const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID; // Replace with your database ID
             const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_INITIALUSERSDATA; // Replace with your collection ID
             const documentId = ID.unique(); // Generate a unique document ID
-
+            const bucketId = process.env.REACT_APP_APPWRITE_STORAGE_BUCKET_ID; // Your Appwrite storage bucket ID   
             // Handle the image upload to Appwrite Storage
             let imageUrl = null;
             if (imageFile) {
@@ -72,7 +72,6 @@ const VisitorPassForm = () => {
 
                 // Construct the full image URL
                 const projectId = process.env.REACT_APP_APPWRITE_PROJECT_ID; // Your Appwrite project ID
-                const bucketId = process.env.REACT_APP_APPWRITE_STORAGE_BUCKET_ID; // Your Appwrite storage bucket ID
                 imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${imageResponse.$id}/view?project=${projectId}&mode=admin`;
             }
 

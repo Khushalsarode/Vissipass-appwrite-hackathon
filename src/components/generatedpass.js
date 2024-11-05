@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { databases, messaging } from '../lib/appwrite'; // Import messaging from your appwrite.js
+import { databases, storage } from '../lib/appwrite';
 import { toast } from 'react-toastify';
 import { QRCodeCanvas } from 'qrcode.react';
+import QRCode from 'qrcode';
 import './GeneratedPass.css';
 
 const GeneratedPass = () => {
     const [records, setRecords] = useState([]);
+    const [generatedCodes, setGeneratedCodes] = useState(new Set());
     const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID;
     const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_USERDATAPASS;
+    const storagebucketqr = '6729136b00115de21e8e';
+    const endpoint = process.env.REACT_APP_APPWRITE_ENDPOINT;
 
     const fetchRecords = async () => {
         try {
@@ -24,62 +28,71 @@ const GeneratedPass = () => {
     }, []);
 
     const handleCreatePass = async (record) => {
+        // Prevent generating QR code for already generated records
+        if (generatedCodes.has(record.$id)) {
+            return;
+        }
+
         try {
-            const qrData = JSON.stringify({
-                id: record.$id,
-                name: `${record.firstName} ${record.lastName}`,
-                email: record.email,
-                dateOfVisit: record.dateOfVisit,
-            });
+            const verificationUrl = `${endpoint}/verify-pass?id=${record.$id}`;
+            const canvas = document.createElement('canvas');
+            await QRCode.toCanvas(canvas, verificationUrl, { width: 256 });
 
-            const qrCanvas = document.createElement('canvas');
-            const qrCode = new QRCodeCanvas({
-                value: qrData,
-                size: 100,
-            });
-            qrCode.appendTo(qrCanvas);
-            const qrImageUrl = qrCanvas.toDataURL();
+            canvas.toBlob(async (blob) => {
+                if (!blob) {
+                    console.error('Failed to create blob from QR code');
+                    toast.error('QR code generation failed');
+                    return;
+                }
 
-            const passContent = `
-                <h1>Visitor Pass</h1>
-                <p>Name: ${record.firstName} ${record.lastName}</p>
-                <p>Phone: ${record.phone}</p>
-                <p>Email: ${record.email}</p>
-                <p>Company: ${record.company}</p>
-                <p>Date of Visit: ${new Date(record.dateOfVisit).toLocaleString()}</p>
-                <p>Purpose: ${record.purposeOfVisit}</p>
-                <p>Department: ${record.department}</p>
-                <p>Badge Type: ${record.badgeType}</p>
-                <p>Employee ID: ${record.employeeId}</p>
-                <img src="${qrImageUrl}" alt="QR Code" style="width:100px; height:100px;" />
-            `;
+                const fileName = `${record.$id}`;
 
-            await sendVisitorPassEmail(record.email, 'Your Visitor Pass', passContent);
-            toast.success(`Visitor pass sent to ${record.email}`);
+                try {
+                    const existingFilesResponse = await storage.listFiles(storagebucketqr);
+                    const existingFile = existingFilesResponse.files.find(file => file.name === fileName);
+
+                    let fileResponse;
+                    if (existingFile) {
+                        fileResponse = await storage.updateFile(
+                            storagebucketqr,
+                            existingFile.$id,
+                            new File([blob], fileName, { type: 'image/png' })
+                        );
+                    } else {
+                        fileResponse = await storage.createFile(
+                            storagebucketqr,
+                            fileName,
+                            new File([blob], fileName, { type: 'image/png' })
+                        );
+                    }
+
+                    if (fileResponse && fileResponse.$id) {
+                        const storageUrl = `${endpoint}/storage/buckets/${storagebucketqr}/files/${fileResponse.$id}/view?project=${process.env.REACT_APP_APPWRITE_PROJECT_ID}&mode=admin`;
+
+                        await databases.updateDocument(
+                            databaseId,
+                            collectionId,
+                            record.$id,
+                            {
+                                storageUrl: storageUrl,
+                                verificationUrl: verificationUrl
+                            }
+                        );
+
+                        // Update state to include the generated ID
+                        setGeneratedCodes(prev => new Set(prev).add(record.$id)); 
+                        toast.success('Visitor pass created with QR code and verification URL.');
+                    } else {
+                        console.error('File upload response is missing required properties:', fileResponse);
+                        toast.error('Failed to retrieve file ID from storage response.');
+                    }
+                } catch (uploadError) {
+                    console.error('Error uploading file to storage:', uploadError);
+                }
+            }, 'image/png');
         } catch (error) {
             console.error('Error creating visitor pass:', error);
-            toast.error('Failed to create and send visitor pass.');
-        }
-    };
-
-    const sendVisitorPassEmail = async (to, subject, htmlContent) => {
-        try {
-            const message = await messaging.createEmail(
-                '67236f7600283b9eec3a',  // Replace with your actual message ID
-                subject,
-                htmlContent,
-                [],  // topics (optional)
-                [],  // users (optional)
-                [],  // targets (optional)
-                [],  // cc (optional)
-                [],  // bcc (optional)
-                false,  // draft (optional)
-                true    // true to send HTML content
-            );
-            console.log(`Email sent to: ${to} - Message ID: ${message.$id}`);
-        } catch (error) {
-            console.error('Error sending email:', error);
-            toast.error('Failed to send visitor pass email: ' + error.message);
+            toast.error('Failed to create and store visitor pass.');
         }
     };
 
@@ -104,7 +117,7 @@ const GeneratedPass = () => {
                             <th>Department</th>
                             <th>Badge Type</th>
                             <th>Employee ID</th>
-                            <th>Action</th>
+                            <th>Action</th> {/* New action column for buttons */}
                         </tr>
                     </thead>
                     <tbody>
@@ -118,15 +131,15 @@ const GeneratedPass = () => {
                                     />
                                 </td>
                                 <td>
-                                    <QRCodeCanvas
-                                        value={JSON.stringify({
-                                            id: record.$id,
-                                            name: `${record.firstName} ${record.lastName}`,
-                                            email: record.email,
-                                            dateOfVisit: record.dateOfVisit,
-                                        })}
-                                        size={50}
-                                    />
+                                    {record.storageUrl ? (
+                                        <img
+                                            src={record.storageUrl}
+                                            alt="QR Code"
+                                            style={{ width: '50px', height: '50px' }}
+                                        />
+                                    ) : (
+                                        <QRCodeCanvas value={record.verificationUrl || 'Generating...'} size={50} />
+                                    )}
                                 </td>
                                 <td>{record.firstName}</td>
                                 <td>{record.lastName}</td>
@@ -139,7 +152,12 @@ const GeneratedPass = () => {
                                 <td>{record.badgeType}</td>
                                 <td>{record.employeeId}</td>
                                 <td>
-                                    <button onClick={() => handleCreatePass(record)}>Create Pass</button>
+                                    {/* Button for generating QR code */}
+                                    {!generatedCodes.has(record.$id) ? (
+                                        <button onClick={() => handleCreatePass(record)}>Generate QR Code</button>
+                                    ) : (
+                                        <span>Generated</span> // Optional: Display a message or icon after generation
+                                    )}
                                 </td>
                             </tr>
                         ))}

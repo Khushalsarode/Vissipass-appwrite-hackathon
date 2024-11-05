@@ -27,3 +27,6 @@ yarn-error.log*
 /GetUserLogFunction/.env
 /GetUserLogFunction/node_modules
 /GetUserLogFunction/package-lock.json
+
+
+appwrite.json

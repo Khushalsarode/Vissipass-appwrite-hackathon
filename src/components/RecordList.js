@@ -36,7 +36,13 @@ const RecordList = () => {
                     obj[key] = recordToAccept[key];
                     return obj;
                 }, {});
-
+            
+                // Add missing mandatory fields with default or empty values if not present
+            if (!recordData.verificationUrl && !recordData.storageUrl) {
+                recordData.verificationUrl = ''; // Default or placeholder value
+                recordData.storageUrl = ''; // Default or placeholder value
+            }             
+            
             await databases.createDocument(
                 databaseId,
                 acceptedCollectionId,

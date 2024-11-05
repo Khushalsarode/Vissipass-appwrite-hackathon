@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Pass</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            font-size: 16px;
+        }
+        .header {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .header img {
+            max-width: 120px;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 20px;
+            color: #333333;
+        }
+        .content h2 {
+            margin: 0;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .profile-photo {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #007BFF;
+            margin: 0 auto 20px;
+        }
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .info-container div {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+        .table th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: 500;
+        }
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background-color: #f8f8f8;
+            font-size: 14px;
+            color: #777777;
+            border-top: 1px solid #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="company_logo_url" alt="Company Logo">
+            <h1>Company Name</h1>
+        </div>
+        <div class="content">
+            <img src="profile_photo_url" alt="Profile Photo" class="profile-photo">
+            <h2>Visitor Pass</h2>
+
+            <div class="info-container">
+                <div>
+                    <p><strong>Name:</strong> First Name Last Name</p>
+                    <p><strong>Employee ID:</strong> Employee ID (if available)</p>
+                </div>
+                <div class="qr-code">
+                    <img src="qr_code_url" alt="QR Code" style="width: 150px; border: 1px solid #dddddd; border-radius: 5px;">
+                </div>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>Company</th>
+                    <th>Date of Visit</th>
+                    <th>Purpose</th>
+                    <th>Department</th>
+                    <th>Badge Type</th>
+                </tr>
+                <tr>
+                    <td>Company Name</td>
+                    <td>Date of Visit</td>
+                    <td>Purpose of Visit</td>
+                    <td>Department Name</td>
+                    <td>Badge Type</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            &copy; <span id="year"></span> Company Name. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>

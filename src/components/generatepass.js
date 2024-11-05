@@ -22,6 +22,7 @@ const VisitorPassForm = () => {
         department: '',
         badgeType: '',
         employeeId: '', // New field for employee/student ID
+        
     };
 
     const validationSchema = Yup.object({
@@ -54,6 +55,8 @@ const VisitorPassForm = () => {
             const dataToSubmit = {
                 ...values,
                 dateOfVisit: formattedDate, // Store the formatted date
+                verificationUrl: '',
+                storageUrl:'',  
             };
 
             // Define your database and collection IDs
@@ -96,6 +99,7 @@ const VisitorPassForm = () => {
 
     if (!formVisible) {
         return <div className="success-message">Visitor pass created successfully!</div>; // Message after submission
+        //reset state here after submission and display toast message instead of this message
     }
 
     return (
