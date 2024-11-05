@@ -1,7 +1,7 @@
 # 🎫 VissiPass
 **Your Easy Path to a Civilized Visitor Management Experience!** <br> <br>
 [![Work in Progress](https://img.shields.io/badge/Work_in_Progress-Yes-green)](https://shields.io/)<br><br>
-[![Work Done](https://img.shields.io/badge/80%)](https://shields.io/)<br><br>
+![Work Done](https://img.shields.io/badge/Progress-85%25-brightgreen)<br><br>
 ![React](https://img.shields.io/badge/frontend-react-blue?logo=react&logoColor=white)
 ![Appwrite](https://img.shields.io/badge/backend-appwrite-red?logo=appwrite&logoColor=white)
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue)
