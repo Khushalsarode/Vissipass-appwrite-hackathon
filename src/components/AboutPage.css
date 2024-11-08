@@ -1,5 +1,3 @@
-/* src/components/AboutPage.css */
-
 .aboutpage {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -61,6 +59,15 @@
     list-style-type: disc;
     margin-left: 20px;
     color: #333; /* Text color for list items */
+}
+
+.info-section a.link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.info-section a.link:hover {
+    text-decoration: underline;
 }
 
 .footer {

@@ -1,56 +1,75 @@
 /* src/components/Dashboard.css */
 
+/* General Dashboard Styling */
 .dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa; /* Light background color */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 30px; /* Increased padding for a more spacious layout */
+    background-color: var(--dashboard-bg-color); /* Theme-based background */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    max-width: 1100px;
+    margin: 20px auto; /* Centered and some margin */
 }
 
+/* Dashboard Header */
 .dashboard-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Increased margin for spacing */
 }
 
+/* Welcome Message Styling */
 .welcome-message {
-    font-size: 1.1em;
-    color: #6c757d; /* Gray color for the message */
+    font-size: 1.2em; /* Slightly larger message text */
+    color: var(--text-color-muted); /* Theme-based muted text */
+    font-weight: 500; /* Slightly bolder text for emphasis */
 }
 
+/* Dashboard Content */
 .dashboard-content {
     width: 100%;
-    max-width: 800px; /* Limit max width for better readability */
-    
+    max-width: 900px; /* Limit max width for better readability */
 }
 
+/* Profile Overview Section Padding */
+.dashboard-section .profile-overview {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* Dashboard Section Styling */
 .dashboard-section {
-    background: white; /* White background for sections */
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px; /* Rounded corners for sections */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    transition: transform 0.2s; /* Animation on hover */
+    background: var(--section-bg-color); /* Theme-based section background */
+    padding: 20px; /* More padding for comfortable space */
+    margin-bottom: 20px; /* Increased margin between sections */
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
+    transition: transform 0.2s ease-in-out; /* Smooth animation */
 }
 
+/* Hover effect for sections */
 .dashboard-section:hover {
-    transform: translateY(-2px); /* Slightly lift the section on hover */
+    transform: translateY(-5px); /* Slightly stronger hover effect */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Bigger shadow on hover */
 }
 
+/* Section Headings */
 .dashboard-section h2 {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Space below headings */
-    font-size: 1.5em; /* Larger heading size */
-    color: #343a40; /* Darker text for headings */
+    margin-bottom: 15px;
+    font-size: 1.6em; /* Larger heading */
+    color: var(--text-color-heading); /* Theme-based heading color */
+    font-weight: 600; /* Stronger emphasis on the section title */
 }
 
+/* Section Paragraph Text */
 .dashboard-section p {
-    color: #495057; /* Dark gray color for text */
+    color: var(--text-color); /* Theme-based text color */
+    font-size: 1em;
+    line-height: 1.6; /* Better readability */
 }
-/* src/components/Dashboard.css */
 
 /* Light Theme (default) */
 body.light {
@@ -58,77 +77,116 @@ body.light {
     color: #333;
 }
 
+/* Dark Theme */
 body.dark {
     background-color: #333;
     color: #ffffff;
+}
+
+/* Theme-based color variables */
+:root {
+    --dashboard-bg-color: #f8f9fa; /* Light theme background */
+    --section-bg-color: white; /* Light theme section background */
+    --text-color: #495057; /* Light theme text color */
+    --text-color-heading: #343a40; /* Darker text color for headings */
+    --text-color-muted: #6c757d; /* Muted text color */
+}
+
+/* Dark Theme Overrides */
+body.dark {
+    --dashboard-bg-color: #212529; /* Dark theme background */
+    --section-bg-color: #343a40; /* Dark theme section background */
+    --text-color: #f8f9fa; /* Dark theme text color */
+    --text-color-heading: #ffffff; /* Dark theme heading color */
+    --text-color-muted: #adb5bd; /* Dark theme muted text color */
 }
 
 /* Settings Buttons */
 .dashboard .settings-options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 15px; /* More space between settings buttons */
+    margin-top: 20px;
 }
 
+/* Button Styling */
+.toggle-theme,
+.clear-cache,
+.delete-data,
+.delete-account {
+    padding: 12px 20px; /* Larger buttons for better clickability */
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center; /* Ensure button text is centered */
+}
+
+/* Button colors */
 .toggle-theme {
     background-color: #007bff;
-    color: #fff;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    color: white;
+}
+
+.toggle-theme:hover {
+    background-color: #0056b3;
 }
 
 .clear-cache {
-    background-color: #ffc107; /* Yellow */
+    background-color: #ffc107;
     color: #333;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+}
+
+.clear-cache:hover {
+    background-color: #e0a800;
 }
 
 .delete-data {
-    background-color: #fd7e14; /* Orange */
-    color: #fff;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    background-color: #fd7e14;
+    color: white;
+}
+
+.delete-data:hover {
+    background-color: #e76f00;
 }
 
 .delete-account {
-    background-color: #dc3545; /* Red */
-    color: #fff;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-account:hover {
+    background-color: #c82333;
 }
 
 .dashboard .settings-options button:hover {
     opacity: 0.9;
+    transform: translateY(-2px); /* Subtle lift on hover */
 }
+
+/* Loading Screen */
 .loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     color: #ffffff;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     flex-direction: column;
 }
 
+/* Loading Spinner */
 .loading-screen .spinner {
-    border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
-    border-top: 8px solid #ffffff; /* White color for the spinning section */
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #ffffff;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -136,6 +194,7 @@ body.dark {
     margin-bottom: 15px;
 }
 
+/* Loading Message */
 .loading-screen .message {
     font-size: 1.5rem;
     color: #ffffff;

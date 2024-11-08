@@ -1,110 +1,145 @@
 /* src/components/HomePage.css */
 
+/* General styles */
 .homepage {
-    text-align: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;  /* Light background for cleanliness */
+    color: #333;  /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
+/* Header */
 .header {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.header-title {
+    font-size: 2.4rem;
+    color: #2d2d2d;  /* Deep gray for title */
     margin-bottom: 20px;
 }
 
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header-description {
+    font-size: 1.2rem;
+    color: #666;  /* Light gray for description */
+    margin-bottom: 30px;
 }
-
-.visitor-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-label {
-    margin: 10px 0 5px;
-}
-
-input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.footer {
-    margin-top: 20px;
-}
-
-
-.info-section {
-    margin: 20px 0;
-}
-
-.sample-passes {
-    margin-top: 30px;
-}
-
-.pass {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.pass h3 {
-    margin: 0;
-    color: #4CAF50;
-}
-
-.pass p {
-    margin: 5px 0;
-}
-/* src/components/HomePage.css */
 
 .open-form-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1em;
+    padding: 12px 20px;
+    background-color: #007bff;  /* Blue for a professional look */
+    color: #fff;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
 .open-form-button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;  /* Darker blue on hover */
 }
 
-.modal-content {
-    background: white;
+/* Content */
+.content {
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Sections */
+.intro-section,
+.features-section,
+.info-section {
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.intro-section h2,
+.features-section h2,
+.info-section h2 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.intro-section p,
+.features-section p,
+.info-section p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+/* Features List */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    background: #f8f8f8;
     padding: 20px;
     border-radius: 8px;
-    width: 80%; /* Adjusted to take more screen width */
-    max-width: 800px; /* Max width increased for larger screen */
-    position: relative;
-    max-height: 90vh; /* Restricting height for better appearance */
-    overflow-y: auto; /* Add vertical scrolling */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+.feature-item h3 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Footer */
+.footer {
+    background-color: #fff;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    color: #777;
+}
+
+.footer p {
+    font-size: 1rem;
+}
+
+/* Modal Styles */
 .modal {
     position: fixed;
     top: 0;
@@ -118,14 +153,28 @@ button:hover {
     z-index: 1000;
 }
 
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    color: #e74c3c;
     background: none;
     border: none;
     cursor: pointer;
-    background-color: #000000;
+}
 
+.close-button:hover {
+    color: #c0392b;
 }

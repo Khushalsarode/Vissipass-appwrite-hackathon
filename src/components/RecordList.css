@@ -1,44 +1,178 @@
-/* src/components/RecordList.css */
-.record-list {
-    padding: 20px;
+/* RecordList.css */
+
+/* Base Styles for Light and Dark Themes */
+:root {
+    --light-background: #ffffff;
+    --dark-background: #333;
+    --light-text: #333;
+    --dark-text: #ffffff;
+    --light-border: #ddd;
+    --dark-border: #444;
+    --table-header-light: #45a049;
+    --table-header-dark: #00796b;
+    --hover-light: #cbcbcb;
+    --hover-dark: #555;
+    --accept-button-light: #4caf50;
+    --accept-button-dark: #388e3c;
+    --deny-button-light: #f44336;
+    --deny-button-dark: #d32f2f;
+    --error-text: #d9534f;
 }
 
+/* Apply styles for light and dark themes */
+body.light {
+    background-color: var(--light-background);
+    color: var(--light-text);
+}
+
+body.dark {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+/* Record List Container */
+.record-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--light-background);
+    color: var(--light-text);
+}
+
+.record-list h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
 .record-table {
     width: 100%;
     border-collapse: collapse;
+    background-color: var(--light-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+    color: var(--light-text);
 }
 
-.record-table th, .record-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.record-table thead {
+    background-color: var(--table-header-light);
+    color: var(--dark-text);
+}
+
+.record-table thead th{
+    background-color: var(--table-header-light);
+}
+
+.record-table th {
+    padding: 12px 15px;
+    font-weight: bold;
     text-align: left;
+    font-size: 14px;
+}
+
+.record-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 14px;
+}
+
+.record-table tr:hover {
+    background-color: var(--hover-light);
+}
+
+.record-table td img.record-image {
+    border-radius: 5px;
+    border: 1px solid var(--light-border);
+}
+
+/* Button Styles */
+.accept-button,
+.deny-button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .accept-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.deny-button {
-    background-color: #f44336;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
+    background-color: var(--accept-button-light);
 }
 
 .accept-button:hover {
-    background-color: #45a049;
+    background-color: #43a047;
+}
+
+.deny-button {
+    background-color: var(--deny-button-light);
 }
 
 .deny-button:hover {
-    background-color: #d32f2f;
+    background-color: #e53935;
 }
-.record-image {
-    border-radius: 50%; /* Optional: Makes the image round */
-    object-fit: cover; /* Ensures the image covers the area nicely */
+
+/* Error Message */
+.error {
+    color: var(--error-text);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .record-table th,
+    .record-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .record-table {
+        font-size: 0.9em;
+    }
+
+    .accept-button,
+    .deny-button {
+        padding: 6px 12px;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark .record-list {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+body.dark .record-table {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+body.dark .record-table thead {
+    background-color: var(--table-header-dark);
+}
+
+body.dark .record-table tr:hover {
+    background-color: var(--hover-dark);
+}
+
+body.dark .record-table td img.record-image {
+    border-color: var(--dark-border);
+}
+
+body.dark .accept-button {
+    background-color: var(--accept-button-dark);
+}
+
+body.dark .deny-button {
+    background-color: var(--deny-button-dark);
 }

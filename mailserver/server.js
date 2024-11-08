@@ -1,4 +1,21 @@
-<!DOCTYPE html>
+const express = require('express');
+const { Resend } = require('resend');
+const cors = require('cors'); 
+
+// Initialize Resend with your API key
+const resend = new Resend('re_JWhCFEqn_ESGaj4Gfm67rnBAx4SJVAmKX'); // Replace with your actual Resend API key
+
+// Create an Express server
+const app = express();
+const port = 5000;
+
+app.use(cors());
+
+// Middleware to parse JSON body data
+app.use(express.json());
+
+// Email template HTML content (ensure it's a string)
+const emailTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -203,4 +220,47 @@
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
-</html>
+</html>`;
+
+// Endpoint to send email
+app.post('/send-email', async (req, res) => {
+  const { to, subject, company, firstName, lastName, userImage, employeeId, $id, qrCodeUrl, dateOfVisit, purpose, department, badgeType } = req.body;
+
+  try {
+    // Ensure emailTemplate is a string before using .replace()
+    let personalizedEmail = String(emailTemplate)
+      .replace("{company}", company)
+      .replace("{firstName}", firstName)
+      .replace("{lastName}", lastName)
+      .replace("{profilePhoto}", userImage)
+      .replace("{employeeId}", employeeId)
+      .replace("{PassId}", $id)
+      .replace("{qrCodeUrl}", qrCodeUrl)
+      .replace("{dateOfVisit}",new Date (dateOfVisit).toLocaleString())
+      .replace("{purpose}", purpose)
+      .replace("{department}", department)
+      .replace("{badgeType}", badgeType);
+
+    // Sending the email via Resend API
+    const { data, error } = await resend.emails.send({
+      from: 'Vissipass <Vissipass@aiforgetech.co>',
+      to: [to],
+      subject: subject || 'Visitor Pass',
+      html: personalizedEmail,  // Use the dynamically updated template
+    });
+
+    if (error) {
+      return res.status(500).json({ error });
+    }
+
+    // If email is sent successfully, return the response data
+    return res.status(200).json({ message: 'Email sent successfully', data });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});

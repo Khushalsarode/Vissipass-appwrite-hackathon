@@ -20,7 +20,7 @@ const HomePage = () => {
             <header className="header">
                 <h1 className="header-title">Visitor Pass Generation</h1>
                 <p className="header-description">
-                    Welcome to the Visitor Pass Generation system. Easily generate visitor passes tailored to your needs.
+                    Welcome to the Visitor Pass Generation system. Quickly and easily generate visitor passes tailored to your needs. Secure, simple, and efficient.
                 </p>
                 <button className="open-form-button" onClick={openForm}>
                     Create Visitor Pass
@@ -28,24 +28,44 @@ const HomePage = () => {
             </header>
 
             <main className="content">
-                <section className="info-section">
-                    <h2>About the System</h2>
+                <section className="intro-section">
+                    <h2>Why Choose Our System?</h2>
                     <p>
-                        Our system simplifies the process of generating visitor passes. You can create passes for various purposes including:
+                        Our Visitor Pass Generation system is designed to be intuitive, fast, and secure. Whether you're organizing a business meeting, hosting an event, or managing guest visits, our system simplifies the process. Here's why our system stands out:
                     </p>
                     <ul>
-                        <li>Business Meetings</li>
-                        <li>Events and Conferences</li>
-                        <li>Guest Visits</li>
+                        <li>Fast and easy pass generation with minimal input</li>
+                        <li>Customizable for various use cases (business meetings, events, guest visits)</li>
+                        <li>Real-time tracking and management of generated passes</li>
+                        <li>Secure data processing to protect visitor information</li>
                     </ul>
-                    <p>
-                        Follow the instructions, and your visitor pass will be ready in no time!
-                    </p>
                 </section>
+
+                <section className="features-section">
+                    <h2>Key Features</h2>
+                    <div className="features-grid">
+                        <div className="feature-item">
+                            <h3>Customizable Passes</h3>
+                            <p>Choose from a variety of templates and customize passes with specific details and branding.</p>
+                        </div>
+                        <div className="feature-item">
+                            <h3>Secure & Confidential</h3>
+                            <p>All data is securely processed, ensuring that visitor information remains confidential.</p>
+                        </div>
+                        <div className="feature-item">
+                            <h3>Real-Time Monitoring</h3>
+                            <p>Track the status of all generated passes and monitor visitor arrivals in real-time.</p>
+                        </div>
+                    </div>
+                </section>
+
+
             </main>
 
             <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+                <div className="footer-info">
+                    <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+                </div>
             </footer>
 
             {isFormOpen && (

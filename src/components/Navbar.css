@@ -1,4 +1,20 @@
 /* src/components/Navbar.css */
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.logo {
+    width: 40px; /* Adjust the size as needed */
+    height: auto;
+}
 
 .navbar {
     background-color: #4CAF50;
@@ -58,6 +74,10 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
     padding: 10px; /* Padding for the dropdown content */
     z-index: 10; /* Ensure it appears above other content */
+    top: 100%; /* Position below the profile section */
+    right: 1px;
+    left: 0px;  
+    width: 400px; /* Dropdown width */    
 }
 
 .profile-dropdown p {

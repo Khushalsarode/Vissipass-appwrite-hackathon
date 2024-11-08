@@ -7,16 +7,19 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@react-email/components": "^0.0.27",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@trycourier/courier": "^6.3.0",
     "appwrite": "^16.0.2",
     "axios": "^1.7.7",
     "formik": "^2.4.6",
+    "node-appwrite": "^14.1.0",
     "qrcode": "^1.5.4",
     "qrcode.react": "^4.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-qr-code": "^2.0.15",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
@@ -47,5 +50,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "react-email": "3.0.2"
+  },
+  "description": "**Your Easy Path to a Civilized Visitor Management Experience!** <br> <br>\r [![Work in Progress](https://img.shields.io/badge/Work_in_Progress-Yes-green)](https://shields.io/)<br><br>\r ![React](https://img.shields.io/badge/frontend-react-blue?logo=react&logoColor=white)\r ![Appwrite](https://img.shields.io/badge/backend-appwrite-red?logo=appwrite&logoColor=white)\r ![License](https://img.shields.io/badge/license-Apache%202.0-blue)\r <!-- ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=khushalsarode.appwrite-hackathon) -->\r  <!-- ![Repo Size](https://img.shields.io/github/repo-size/khushalsarode.appwrite-hackathon) -->\r ![Docs](https://img.shields.io/badge/docs-complete-brightgreen)\r ![Issues](https://img.shields.io/github/issues/khushalsarode/appwrite-hackathon)\r ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)\r ![Contributors](https://img.shields.io/github/contributors/khushalsarode/appwrite-hackathon)\r ![Forks](https://img.shields.io/github/forks/khushalsarode/appwrite-hackathon?style=social)\r ![Stars](https://img.shields.io/github/stars/khushalsarode/appwrite-hackathon?style=social)\r ![Last Commit](https://img.shields.io/github/last-commit/khushalsarode/appwrite-hackathon)",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

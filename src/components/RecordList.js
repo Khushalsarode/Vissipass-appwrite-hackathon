@@ -73,6 +73,7 @@ const RecordList = () => {
     };
 
     return (
+        <div>
         <div className="record-list">
             <h2>Visitor Records</h2>
             {records.length === 0 ? (
@@ -137,7 +138,12 @@ const RecordList = () => {
                     </tbody>
                 </table>
             )}
+            
         </div>
+        <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+    </footer>
+    </div>
     );
 };
 

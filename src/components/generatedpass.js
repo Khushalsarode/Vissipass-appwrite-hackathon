@@ -4,13 +4,14 @@ import { toast } from 'react-toastify';
 import { QRCodeCanvas } from 'qrcode.react';
 import QRCode from 'qrcode';
 import './GeneratedPass.css';
+import axios from 'axios';
 
 const GeneratedPass = () => {
     const [records, setRecords] = useState([]);
     const [generatedCodes, setGeneratedCodes] = useState(new Set());
     const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID;
     const collectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID_USERDATAPASS;
-    const storagebucketqr = '6729136b00115de21e8e';
+    const storagebucketqr = process.env.REACT_APP_APPWRITE_STORAGE_BUCKET_QR;
     const endpoint = process.env.REACT_APP_APPWRITE_ENDPOINT;
 
     const fetchRecords = async () => {
@@ -32,25 +33,26 @@ const GeneratedPass = () => {
         if (generatedCodes.has(record.$id)) {
             return;
         }
-
+    
         try {
-            const verificationUrl = `${endpoint}/verify-pass?id=${record.$id}`;
+            const verificationUrl = `http://localhost:3000/verify-pass?id=${record.$id}`;
+            //${endpoint}/verify-pass?id=${record.$id} //at live version can replace endpoint to real domain endpoint
             const canvas = document.createElement('canvas');
             await QRCode.toCanvas(canvas, verificationUrl, { width: 256 });
-
+    
             canvas.toBlob(async (blob) => {
                 if (!blob) {
                     console.error('Failed to create blob from QR code');
                     toast.error('QR code generation failed');
                     return;
                 }
-
+    
                 const fileName = `${record.$id}`;
-
+    
                 try {
                     const existingFilesResponse = await storage.listFiles(storagebucketqr);
                     const existingFile = existingFilesResponse.files.find(file => file.name === fileName);
-
+    
                     let fileResponse;
                     if (existingFile) {
                         fileResponse = await storage.updateFile(
@@ -65,10 +67,10 @@ const GeneratedPass = () => {
                             new File([blob], fileName, { type: 'image/png' })
                         );
                     }
-
+    
                     if (fileResponse && fileResponse.$id) {
                         const storageUrl = `${endpoint}/storage/buckets/${storagebucketqr}/files/${fileResponse.$id}/view?project=${process.env.REACT_APP_APPWRITE_PROJECT_ID}&mode=admin`;
-
+    
                         await databases.updateDocument(
                             databaseId,
                             collectionId,
@@ -78,10 +80,36 @@ const GeneratedPass = () => {
                                 verificationUrl: verificationUrl
                             }
                         );
-
+    
                         // Update state to include the generated ID
-                        setGeneratedCodes(prev => new Set(prev).add(record.$id)); 
+                        setGeneratedCodes(prev => new Set(prev).add(record.$id));
                         toast.success('Visitor pass created with QR code and verification URL.');
+                        // Send email notification
+                   // Call the send-email API
+                   try {
+                    const emailData = {
+                        to: record.email, // Replace with the actual recipient email
+                        subject: 'Hello, Your Visit has been Schedule!', // Replace with dynamic data if needed
+                        company: record.company, // Replace with dynamic data if needed
+                        $id: record.$id,
+                        firstName: record.firstName, // Adjust fields accordingly
+                        lastName: record.lastName,
+                        userImage: record.userImage, // Adjust field accordingly
+                        employeeId: record.employeeId, // Adjust field accordingly
+                        qrCodeUrl: storageUrl, // Use the generated URL for the QR code
+                        dateOfVisit: record.dateOfVisit, // Adjust field accordingly
+                        purpose: record.purposeOfVisit, // Adjust field accordingly
+                        department: record.department, // Adjust field accordingly
+                        badgeType: record.badgeType // Adjust field accordingly
+                    };
+                    console.log('Email data:', emailData);
+
+                    await axios.post('http://localhost:5000/send-email', emailData);
+                    toast.success('Email sent successfully');
+                } catch (error) {
+                    console.error('Error sending email:', error);
+                    toast.error('Failed to send email');
+                }
                     } else {
                         console.error('File upload response is missing required properties:', fileResponse);
                         toast.error('Failed to retrieve file ID from storage response.');
@@ -95,8 +123,10 @@ const GeneratedPass = () => {
             toast.error('Failed to create and store visitor pass.');
         }
     };
+    
 
     return (
+        <div>
         <div className="generated-pass">
             <h2>Generated Visitor Pass</h2>
             {records.length === 0 ? (
@@ -117,7 +147,7 @@ const GeneratedPass = () => {
                             <th>Department</th>
                             <th>Badge Type</th>
                             <th>Employee ID</th>
-                            <th>Action</th> {/* New action column for buttons */}
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,7 +157,7 @@ const GeneratedPass = () => {
                                     <img
                                         src={record.userImage}
                                         alt={`${record.firstName} ${record.lastName}`}
-                                        style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                                        style={{ width: '50px', height: '50px', borderRadius: '5px',border: '1px solid #ddd' }}
                                     />
                                 </td>
                                 <td>
@@ -165,6 +195,10 @@ const GeneratedPass = () => {
                 </table>
             )}
         </div>
+        <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+    </footer>
+    </div>
     );
 };
 

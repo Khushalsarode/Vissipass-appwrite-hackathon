@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../lib/context/user';
-import { account, client,databases, storage } from '../lib/appwrite';
+import { account, client,databases, Functions } from '../lib/appwrite';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHistory, faCog, faChartLine } from '@fortawesome/free-solid-svg-icons';
-import { Avatars, Flag, Locale  } from "appwrite";
+import { Avatars, Flag, Client  } from "appwrite";
+
 
 const Dashboard = () => {
     const { isAuthenticated, userData } = useUser(); 
@@ -18,6 +19,8 @@ const Dashboard = () => {
      const [showChangePassword, setShowChangePassword] = useState(false); // To toggle visibility of change password form
     
     const [loading, setLoading] = useState(true); // Loading state
+
+    const [result, setResult] = useState('');
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -264,8 +267,43 @@ const Dashboard = () => {
     
 
 
+    useEffect(() => {
+        const client = new Client();
+        client
+          .setEndpoint(process.env.REACT_APP_APPWRITE_ENDPOINT) // Ensure correct endpoint
+          .setProject(process.env.REACT_APP_APPWRITE_PROJECT_ID); // Ensure correct project ID
     
-
+        const functions = new Functions(client);
+    
+        // Trigger the function call
+        functions
+          .createExecution(process.env.REACT_APP_APPWRITE_FUNCTION_ID_GETUSERLOGS, JSON.stringify({}))
+          .then((response) => {
+            let responseBody = response.responseBody;
+            console.log("responseBody", responseBody);
+    
+            try {
+              // Attempt to parse the response
+              responseBody = JSON.parse(responseBody);
+              
+              // Handle parsed response (assuming you expect logs and a message)
+              setResult(responseBody.message || 'Visitor Data fetched successfully');
+              setRecentActivity(responseBody.logs || []);
+              console.log("responseBody.logs", responseBody.logs);
+            } catch (error) {
+              // If parsing fails, show raw response
+              setResult('Error parsing response');
+            }
+    
+            setLoading(false); // Set loading state to false once the data is fetched
+          })
+          .catch((error) => {
+            // Handle any errors
+            setResult(`Error: ${error.message}`);
+            setLoading(false);
+          });
+      }, []); // Empty dependency array means this will run once after initial render
+    
 
     return (
         <div>
@@ -338,7 +376,21 @@ const Dashboard = () => {
                     <section className="dashboard-section analytics">
                         <h2><FontAwesomeIcon icon={faChartLine} /> &nbsp; Application Analytics</h2>
                         <p>Coming soon...</p>
-                                            
+                        <div>
+                            <h1>User Logs</h1>
+                            <div>{result}</div>
+                            <h2>Recent Activity:</h2>
+                            <ul>
+                                {recentActivity.length > 0 ? (
+                                recentActivity.map((log, index) => (
+                                    <li key={index}>{log}</li>
+                                ))
+                                ) : (
+                                <li>No recent activity found</li>
+                                )}
+                            </ul>
+                            </div>
+                                                                    
                     </section>
                     {/* Settings Section */}
                     <section className="dashboard-section settings">
@@ -391,6 +443,9 @@ const Dashboard = () => {
             </div>
         </>
     )} 
+    <footer className="footer">
+                <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+            </footer>
     </div> 
     );
 };

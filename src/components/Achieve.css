@@ -1,0 +1,156 @@
+/* Base Styles for Light and Dark Themes */
+:root {
+    --light-background: #ffffff;
+    --dark-background: #333;
+    --light-form-background: #f9f9fc;
+    --dark-form-background: #444;
+    --light-text: #333;
+    --dark-text: #ffffff;
+    --light-border: #ddd;
+    --dark-border: #666;
+    --primary-color: #45a049;
+    --hover-color: #f1f1f1;
+    --footer-text-light: #777;
+    --footer-text-dark: #bbb;
+}
+
+/* Global Styles for Light and Dark Themes */
+body.light {
+    background-color: var(--light-background);
+    color: var(--light-text);
+}
+
+body.dark {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+/* Main container */
+.achieve {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: var(--light-form-background);
+    min-height: 100vh;
+}
+
+body.dark .achieve {
+    background-color: var(--dark-form-background);
+}
+
+/* Title */
+.achieve h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--light-text);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+body.dark .achieve h2 {
+    color: var(--dark-text);
+}
+
+/* No records message */
+.achieve p {
+    font-size: 1em;
+    color: var(--light-text);
+    margin-top: 20px;
+}
+
+body.dark .achieve p {
+    color: var(--dark-text);
+}
+
+/* Table styling */
+.archived-records-table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    background: var(--light-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+body.dark .archived-records-table {
+    background: var(--dark-form-background);
+    border: 1px solid var(--dark-border);
+}
+
+/* Table header */
+.archived-records-table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+body.dark .archived-records-table thead {
+    background-color: var(--primary-color);
+}
+
+.archived-records-table th {
+    padding: 12px;
+    font-weight: bold;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+/* Table rows */
+.archived-records-table tbody tr {
+    border-bottom: 1px solid var(--light-border);
+    transition: background-color 0.2s;
+}
+
+body.dark .archived-records-table tbody tr {
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.archived-records-table tbody tr:hover {
+    background-color: var(--hover-color);
+}
+
+body.dark .archived-records-table tbody tr:hover {
+    background-color: #555;
+}
+
+/* Table cells */
+.archived-records-table td {
+    padding: 12px;
+    font-size: 0.9em;
+    color: var(--light-text);
+}
+
+body.dark .archived-records-table td {
+    color: var(--dark-text);
+}
+
+/* Profile image styling */
+.archived-records-table td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--light-border);
+}
+
+body.dark .archived-records-table td img {
+    border: 1px solid var(--dark-border);
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--footer-text-light);
+}
+
+body.dark .footer {
+    color: var(--footer-text-dark);
+}
+
+.footer p {
+    margin: 0;
+}

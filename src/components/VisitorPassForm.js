@@ -159,29 +159,256 @@ const VisitorPassForm = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="company">Company/Organization</label>
-                            <Field name="company" type="text" />
+                            <Field as="select" name="company">
+                                <option value="">Select Company/Organization</option>
+
+                                {/* School List */}
+                                <optgroup label="Schools">
+                                    <option value="Green Valley High School">Green Valley High School</option>
+                                    <option value="Sunnydale Elementary School">Sunnydale Elementary School</option>
+                                    <option value="Lincoln Middle School">Lincoln Middle School</option>
+                                    <option value="Harmony Charter School">Harmony Charter School</option>
+                                    <option value="Woodland Park High School">Woodland Park High School</option>
+                                </optgroup>
+
+                                {/* Colleges List */}
+                                <optgroup label="Colleges">
+                                    <option value="City Community College">City Community College</option>
+                                    <option value="Northfield College">Northfield College</option>
+                                    <option value="Riverside College">Riverside College</option>
+                                    <option value="St. Andrews College">St. Andrews College</option>
+                                    <option value="Brighton College of Arts">Brighton College of Arts</option>
+                                </optgroup>
+
+                                {/* Universities/Institutes */}
+                                <optgroup label="Universities & Institutes">
+                                    <option value="Harvard University">Harvard University</option>
+                                    <option value="Stanford University">Stanford University</option>
+                                    <option value="Massachusetts Institute of Technology (MIT)">Massachusetts Institute of Technology (MIT)</option>
+                                    <option value="California Institute of Technology (Caltech)">California Institute of Technology (Caltech)</option>
+                                    <option value="Indian Institute of Technology (IIT)">Indian Institute of Technology (IIT)</option>
+                                    <option value="National Institute of Technology (NIT)">National Institute of Technology (NIT)</option>
+                                </optgroup>
+
+                                {/* Companies List */}
+                                <optgroup label="Companies">
+                                    <option value="Google LLC">Google LLC</option>
+                                    <option value="Microsoft Corporation">Microsoft Corporation</option>
+                                    <option value="Apple Inc.">Apple Inc.</option>
+                                    <option value="Amazon.com Inc.">Amazon.com Inc.</option>
+                                    <option value="Facebook, Inc.">Facebook, Inc.</option>
+                                    <option value="Tesla Inc.">Tesla Inc.</option>
+                                    <option value="IBM Corporation">IBM Corporation</option>
+                                    <option value="Oracle Corporation">Oracle Corporation</option>
+                                </optgroup>
+
+                                {/* Organizations List */}
+                                <optgroup label="Organizations">
+                                    <option value="World Health Organization (WHO)">World Health Organization (WHO)</option>
+                                    <option value="United Nations (UN)">United Nations (UN)</option>
+                                    <option value="Red Cross">Red Cross</option>
+                                    <option value="World Wildlife Fund (WWF)">World Wildlife Fund (WWF)</option>
+                                    <option value="Amnesty International">Amnesty International</option>
+                                    <option value="Doctors Without Borders">Doctors Without Borders</option>
+                                    <option value="Greenpeace">Greenpeace</option>
+                                </optgroup>
+                            </Field>
                             <ErrorMessage name="company" component="div" className="error" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="purposeOfVisit">Purpose of Visit</label>
-                            <Field name="purposeOfVisit" type="text" />
-                            <ErrorMessage name="purposeOfVisit" component="div" className="error" />
-                        </div>
+            <label htmlFor="purposeOfVisit">Purpose of Visit</label>
+            <Field as="select" name="purposeOfVisit" >
+                <option value="">Select Purpose of Visit</option>
+
+                {/* General Purposes */}
+                <option value="Meeting">Meeting</option>
+                <option value="Training">Training</option>
+                <option value="Interview">Interview</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Conference">Conference</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Guest_lecture">Guest Lecture</option>
+                <option value="Networking_event">Networking Event</option>
+                <option value="Presentation">Presentation</option>
+                <option value="Collaboration_discussion">Collaboration/Discussion</option>
+                <option value="Audit">Audit</option>
+                <option value="Inspection">Inspection</option>
+                <option value="Contract_signing">Contract Signing</option>
+                <option value="Sales_pitch">Sales Pitch</option>
+                <option value="Product_demo">Product Demo</option>
+                <option value="Vendor_visit">Vendor Visit</option>
+                <option value="Repair_maintenance">Repair/Maintenance</option>
+
+                {/* School/College/University Specific */}
+                <option value="Admission_inquiry">Admission Inquiry</option>
+                <option value="Parent_teacher_meeting">Parent-Teacher Meeting</option>
+                <option value="Student_counseling">Student Counseling</option>
+                <option value="Scholarship_discussion">Scholarship Discussion</option>
+                <option value="Student_orientation">Student Orientation</option>
+                <option value="Extracurricular_event">Extracurricular Event</option>
+                <option value="Exam_invigilation">Exam Invigilation</option>
+                <option value="Research_collaboration">Research Collaboration</option>
+                <option value="Lab_visit">Lab Visit</option>
+                <option value="Campus_tour">Campus Tour</option>
+                <option value="Alumni_meet">Alumni Meet</option>
+                <option value="Sports_event">Sports Event</option>
+                <option value="Faculty_meeting">Faculty Meeting</option>
+                <option value="Academic_consultation">Academic Consultation</option>
+
+                {/* Company/Corporate Purposes */}
+                <option value="Client_meeting">Client Meeting</option>
+                <option value="Business_review">Business Review</option>
+                <option value="Performance_review">Performance Review</option>
+                <option value="Strategy_planning">Strategy Planning</option>
+                <option value="Project_discussion">Project Discussion</option>
+                <option value="Project_kickoff">Project Kickoff</option>
+                <option value="Project_status_update">Project Status Update</option>
+                <option value="Product_launch">Product Launch</option>
+                <option value="Press_conference">Press Conference</option>
+                <option value="Media_interaction">Media Interaction</option>
+                <option value="Investor_meeting">Investor Meeting</option>
+                <option value="Board_meeting">Board Meeting</option>
+
+                {/* Institutional Purposes */}
+                <option value="Public_speech">Public Speech</option>
+                <option value="Government_inspection">Government Inspection</option>
+                <option value="Regulatory_meeting">Regulatory Meeting</option>
+                <option value="License_verification">License Verification</option>
+                <option value="Health_safety_audit">Health & Safety Audit</option>
+                <option value="Community_outreach">Community Outreach</option>
+                <option value="Awareness_program">Awareness Program</option>
+                <option value="Volunteering">Volunteering</option>
+                <option value="Resource_donation">Resource Donation</option>
+
+                {/* Specialized Events */}
+                <option value="Emergency_visit">Emergency Visit</option>
+                <option value="Incident_investigation">Incident Investigation</option>
+                <option value="Legal_matter">Legal Matter</option>
+                <option value="Mediation_session">Mediation Session</option>
+                <option value="Dispute_resolution">Dispute Resolution</option>
+                <option value="Fundraising_event">Fundraising Event</option>
+                <option value="Donor_meeting">Donor Meeting</option>
+                <option value="Cultural_event">Cultural Event</option>
+                <option value="Career_fair">Career Fair</option>
+                <option value="Job_fair">Job Fair</option>
+
+                {/* Healthcare or Medical Purposes */}
+                <option value="Medical_appointment">Medical Appointment</option>
+                <option value="Health_screening">Health Screening</option>
+                <option value="Wellness_check">Wellness Check</option>
+                <option value="Vaccination_drive">Vaccination Drive</option>
+                <option value="Blood_donation">Blood Donation</option>
+
+                {/* Miscellaneous */}
+                <option value="Facility_tour">Facility Tour</option>
+                <option value="Temporary_access">Temporary Access</option>
+                <option value="Other">Other</option>
+            </Field>
+            <ErrorMessage name="purposeOfVisit" component="div" className="error" />
+        </div>
                         <div className="form-group">
                             <label htmlFor="department">Department/Office Location</label>
-                            <Field name="department" type="text" />
+                            <Field as="select" name="department">
+                                <option value="">Select Department/Location</option>
+                                {/* General Corporate/Academic Departments */}
+                                <option value="Administration">Administration</option>
+                                <option value="Human_resources">Human Resources</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Accounting">Accounting</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Research_and_development">Research & Development</option>
+                                <option value="IT">Information Technology (IT)</option>
+                                <option value="Customer_service">Customer Service</option>
+                                <option value="Product_management">Product Management</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Compliance">Compliance</option>
+                                <option value="Operations">Operations</option>
+                                <option value="Security">Security</option>
+                                <option value="Facilities_management">Facilities Management</option>
+                                <option value="Logistics">Logistics</option>
+                                <option value="Supply_chain">Supply Chain</option>
+                                <option value="Quality Assurance & Control">Quality Assurance & Control</option>
+                                <option value="Executive">Executive Office</option>
+                                <option value="Business_development">Business Development</option>
+                                <option value="Training">Training & Development</option>
+                                <option value="Public_relations">Public Relations</option>
+                                <option value="Environmental_health_safety">Environmental Health & Safety (EHS)</option>
+                                <option value="Data_science">Data Science</option>
+                                <option value="Analytics">Analytics</option>
+                                <option value="Customer_success">Customer Success</option>
+                                <option value="Creative">Creative/Design</option>
+                                <option value="Content_management">Content Management</option>
+                                <option value="Product_design">Product Design</option>
+                                <option value="Project_management">Project Management</option>
+                                <option value="Warehouse">Warehouse</option>
+
+                                {/* Academic-Specific Departments */}
+                                <option value="Admissions">Admissions</option>
+                                <option value="Registrar">Registrar's Office</option>
+                                <option value="Financial_aid">Financial Aid</option>
+                                <option value="Academic_affairs">Academic Affairs</option>
+                                <option value="Student_services">Student Services</option>
+                                <option value="Research_labs">Research Labs</option>
+                                <option value="Faculty_affairs">Faculty Affairs</option>
+                                <option value="Library">Library</option>
+                                <option value="Career_services">Career Services</option>
+                                <option value="Housing">Housing & Residential Life</option>
+                                <option value="Alumni_relations">Alumni Relations</option>
+
+                                {/* School Departments */}
+                                <option value="Elementary_school">Elementary School</option>
+                                <option value="Middle_school">Middle School</option>
+                                <option value="High_school">High School</option>
+                                <option value="Special_education">Special Education</option>
+                                <option value="Student_counseling">Student Counseling</option>
+                                
+                                {/* Location Options */}
+                                <option value="Regional_office_1">Regional Office 1</option>
+                                <option value="Regional_office_2">Regional Office 2</option>
+                                <option value="Headquarters">Headquarters</option>
+                                <option value="Main_campus">Main Campus</option>
+                                <option value="Satellite_campus">Satellite Campus</option>
+                            </Field>
                             <ErrorMessage name="department" component="div" className="error" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="badgeType">Badge Type/Access Level</label>
-                            <Field as="select" name="badgeType">
-                                <option value="">Select Badge Type</option>
-                                <option value="guest">Guest</option>
-                                <option value="vendor">Vendor</option>
-                                <option value="vip">VIP</option>
-                            </Field>
-                            <ErrorMessage name="badgeType" component="div" className="error" />
-                        </div>
+                        <label htmlFor="badgeType">Badge Type/Access Level</label>
+                        <Field as="select" name="badgeType">
+                            <option value="">Select Badge Type</option>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Faculty">Temporary</option>
+                            <option value="Alumni">Alumni</option>
+                            <option value="Parent">Parent</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Guest">Guest</option>
+                            <option value="Vendor">Vendor</option>
+                            <option value="Vip">VIP</option>
+                            <option value="Contractor">Contractor</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Executive">Executive</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="Intern">Intern</option>
+                            <option value="Consultant">Consultant</option>
+                            <option value="Temp">Temporary Staff</option>
+                            <option value="Security">Security</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Cleaning">Cleaning Staff</option>
+                            <option value="IT_support">IT Support</option>
+                            <option value="Restricted_access">Restricted Access</option>
+                            <option value="Visitor">Visitor</option>
+                            <option value="Unrestricted">Interview</option>
+                            <option value="General_access">General Access</option>
+                            <option value="Limited_access">Limited Access</option>
+                            <option value="Unrestricted">Unrestricted</option>
+                        </Field>
+                        <ErrorMessage name="badgeType" component="div" className="error" />
+                    </div>
+
 
                         {/* Checkbox for Organization Pass */}
                         <div className="form-group">
