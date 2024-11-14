@@ -2,8 +2,11 @@ const express = require('express');
 const { Resend } = require('resend');
 const cors = require('cors'); 
 
+const dotenv = require('dotenv');
+dotenv.config();
+const resendapikey = new Resend(process.env.RESENDEMAILAPIKEY);
 // Initialize Resend with your API key
-const resend = new Resend('re_JWhCFEqn_ESGaj4Gfm67rnBAx4SJVAmKX'); // Replace with your actual Resend API key
+const resend = new Resend(resendapikey); // Replace with your actual Resend API key
 
 // Create an Express server
 const app = express();
