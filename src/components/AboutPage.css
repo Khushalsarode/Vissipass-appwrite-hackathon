@@ -1,78 +1,104 @@
-.aboutpage {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f7f9fc; /* Light background for a fresh look */
-    min-height: 100vh;
-    padding: 20px;
-}
+/* src/components/AboutUs.css */
 
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.header h1 {
-    font-size: 2.5rem; /* Large font for the title */
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.header-description {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.content {
-    max-width: 800px; /* Limit the width for better readability */
+.about-us-page {
+    padding: 3rem 1.5rem;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between sections */
-}
-
-.info-section {
-    margin-bottom: 20px;
-}
-
-.info-section h2 {
-    color: #007bff; /* Primary color for headings */
-    margin-bottom: 15px;
-    font-size: 1.8rem; /* Slightly larger font for subheadings */
-    border-bottom: 2px solid #007bff; /* Underline effect for subheadings */
-    padding-bottom: 5px; /* Space between text and underline */
-}
-
-.info-section p {
     color: #333;
-    line-height: 1.6; /* Improve readability */
-    margin-bottom: 10px; /* Space below paragraphs */
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.info-section ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    color: #333; /* Text color for list items */
-}
-
-.info-section a.link {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.info-section a.link:hover {
-    text-decoration: underline;
-}
-
-.footer {
+.about-us-header {
     text-align: center;
-    margin-top: 40px;
-    font-size: 0.9rem;
-    color: #666;
+    margin-bottom: 2.5rem;
+}
+
+.about-us-header h1 {
+    font-size: 2.8em;
+    color: #4b6584;
+    margin-bottom: 0.5rem;
+}
+
+.about-us-intro {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.about-us-mission, .about-us-features, .about-us-privacy {
+    margin-bottom: 2.5rem;
+}
+
+.about-us-mission h2,
+.about-us-features h2,
+.about-us-privacy h2 {
+    font-size: 2em;
+    color: #3867d6;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.about-us-mission h2::after,
+.about-us-features h2::after,
+.about-us-privacy h2::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #3867d6;
+    margin-top: 8px;
+}
+
+.features-list {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.features-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.8rem;
+    border-left: 3px solid #4b6584;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.features-list li:hover {
+    background-color: #e6e6e6;
+}
+
+.features-list li strong {
+    color: #4b6584;
+    margin-right: 0.4rem;
+}
+
+.about-us-privacy p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.about-us-footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #999;
+    padding: 1.5rem 0;
+}
+
+.about-us-footer a {
+    color: #3867d6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-us-footer a:hover {
+    text-decoration: underline;
 }

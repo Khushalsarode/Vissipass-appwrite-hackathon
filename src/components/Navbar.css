@@ -1,101 +1,129 @@
 /* src/components/Navbar.css */
+
+:root {
+    --primary-color: #4b6584;
+    --secondary-color: #3867d6;
+    --text-color: #fff;
+    --background-color: #1e272e;
+    --hover-color: #576574;
+}
+
+.navbar {
+    background-color: var(--background-color);
+    padding: 1rem 2rem;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .navbar-content {
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: 1200px;
     justify-content: space-between;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 1rem;
+}
+.info{
+    align-items: center;
+    margin-right: 1rem;    
+
 }
 
 .logo {
-    width: 40px; /* Adjust the size as needed */
-    height: auto;
-}
-
-.navbar {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-.navbar-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 50px;
+    height: 50px;
+    padding-right: 50px;
 }
 
 .project-name {
-    margin: 0;
-    font-size: 24px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 .tagline {
-    margin: 5px 0 15px;
-    font-style: italic;
+    font-size: 10px;
+    color: #b0bec5;
+    align-items: center;
 }
 
 .nav-menu {
-    list-style-type: none;
-    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .nav-menu li {
-    display: inline;
-    margin: 0 15px;
+    font-size: 1.1rem;
 }
 
-.nav-menu a {
-    color: white;
+.nav-menu li a {
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: bold;
+    padding: 0.5rem;
+    transition: color 0.3s;
 }
 
-.nav-menu a:hover {
-    text-decoration: underline;
-    color: greenyellow;
+.nav-menu li a:hover {
+    color: var(--secondary-color);
 }
-/* src/components/Navbar.css */
-/* src/components/Navbar.css */
 
 .profile-section {
-    position: relative; /* Position relative for the dropdown */
+    position: relative;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.profile-icon:hover {
+    color: var(--secondary-color);
 }
 
 .profile-dropdown {
-    position: absolute; /* Absolute position for the dropdown */
-    background: white; /* Dropdown background */
-    border: 1px solid #ddd; /* Border for the dropdown */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
-    padding: 10px; /* Padding for the dropdown content */
-    z-index: 10; /* Ensure it appears above other content */
-    top: 100%; /* Position below the profile section */
-    right: 1px;
-    left: 0px;  
-    width: 400px; /* Dropdown width */    
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    padding: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    min-width: 200px;
+    z-index: 10;
 }
 
-.profile-dropdown p {
-    margin: 5px 0; /* Spacing between paragraphs */
-    color: #333; /* Text color */
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
 }
 
 .logout-button {
-    background-color: #ff4d4d; /* Logout button color */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded button */
-    padding: 5px 10px; /* Button padding */
-    cursor: pointer; /* Pointer cursor for button */
-    width: 90%; /* Full width button */
-    height: 30px; /* Button height */
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
 .logout-button:hover {
-    background-color: #ff1a1a; /* Darker red on hover */
+    background-color: var(--primary-color);
 }

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import VisitorPassForm from './VisitorPassForm';
-import './HomePage.css'; // For styles
+import './HomePage.css';
 
 const HomePage = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -18,54 +18,53 @@ const HomePage = () => {
     return (
         <div className="homepage">
             <header className="header">
-                <h1 className="header-title">Visitor Pass Generation</h1>
-                <p className="header-description">
-                    Welcome to the Visitor Pass Generation system. Quickly and easily generate visitor passes tailored to your needs. Secure, simple, and efficient.
-                </p>
-                <button className="open-form-button" onClick={openForm}>
-                    Create Visitor Pass
-                </button>
+                <div className="header-content">
+                    <h1 className="header-title">VISSIPASS</h1>
+                    <p className="header-tagline">Your All-in-One Visitor Pass Solution</p>
+                    <p className="header-description">
+                        Simplifying visitor management for schools, colleges, businesses, and organizations with secure and efficient pass generation, real-time tracking, and customizable templates.
+                    </p>
+                    <button className="create-pass-button" onClick={openForm}>
+                        Create Visitor Pass
+                    </button>
+                </div>
             </header>
 
             <main className="content">
-                <section className="intro-section">
-                    <h2>Why Choose Our System?</h2>
-                    <p>
-                        Our Visitor Pass Generation system is designed to be intuitive, fast, and secure. Whether you're organizing a business meeting, hosting an event, or managing guest visits, our system simplifies the process. Here's why our system stands out:
-                    </p>
-                    <ul>
-                        <li>Fast and easy pass generation with minimal input</li>
-                        <li>Customizable for various use cases (business meetings, events, guest visits)</li>
-                        <li>Real-time tracking and management of generated passes</li>
-                        <li>Secure data processing to protect visitor information</li>
-                    </ul>
-                </section>
-
                 <section className="features-section">
-                    <h2>Key Features</h2>
+                    <h2 className="section-title">Why Choose VISSIPASS?</h2>
+                    <p className="section-description">
+                        VISSIPASS is designed for seamless visitor management, offering customizable, secure, and user-friendly features tailored to fit any organization’s needs.
+                    </p>
                     <div className="features-grid">
                         <div className="feature-item">
-                            <h3>Customizable Passes</h3>
-                            <p>Choose from a variety of templates and customize passes with specific details and branding.</p>
+                            <h3>Customizable Pass Templates</h3>
+                            <p>Design and personalize visitor passes to align with your organization's branding and requirements.</p>
                         </div>
                         <div className="feature-item">
-                            <h3>Secure & Confidential</h3>
-                            <p>All data is securely processed, ensuring that visitor information remains confidential.</p>
+                            <h3>Real-Time Tracking</h3>
+                            <p>Monitor visitor entries in real time for enhanced security and streamlined access management.</p>
                         </div>
                         <div className="feature-item">
-                            <h3>Real-Time Monitoring</h3>
-                            <p>Track the status of all generated passes and monitor visitor arrivals in real-time.</p>
+                            <h3>Secure & Compliant</h3>
+                            <p>Our system ensures data confidentiality, storing all visitor information securely and in compliance with data regulations.</p>
                         </div>
                     </div>
                 </section>
 
-
+                <section className="how-it-works-section">
+                    <h2 className="section-title">How It Works</h2>
+                    <ul className="steps-list">
+                        <li>Request a pass by filling out the visitor form with necessary details.</li>
+                        <li>The request is reviewed and approved by the system operator.</li>
+                        <li>Once approved, the visitor pass is sent directly to the user’s email.</li>
+                        <li>Scan the pass upon arrival for easy check-in and secure access.</li>
+                    </ul>
+                </section>
             </main>
 
             <footer className="footer">
-                <div className="footer-info">
-                    <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
-                </div>
+                <p className="footer-text">&copy; {new Date().getFullYear()} VISSIPASS. All Rights Reserved.</p>
             </footer>
 
             {isFormOpen && (

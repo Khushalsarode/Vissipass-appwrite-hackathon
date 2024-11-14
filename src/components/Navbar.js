@@ -8,8 +8,8 @@ import { account, client } from '../lib/appwrite';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Avatars } from "appwrite";
-import logo from '../logo/favicon12.png';
+import { Avatars } from 'appwrite';
+import logo from '../logo/logo2.png';
 
 const Navbar = () => {
     const { isAuthenticated, userData, setIsAuthenticated } = useUser();
@@ -43,32 +43,34 @@ const Navbar = () => {
 
     const toggleDropdown = () => setShowDropdown(!showDropdown);
 
-    // Custom handle click to refresh page if already on it
     const handleLinkClick = (path) => {
         if (location.pathname === path) {
-            navigate(0);  // Refresh the page if already on the same route
+            navigate(0);
         } else {
-            navigate(path);  // Navigate to the new path
+            navigate(path);
         }
     };
 
     return (
         <nav className="navbar">
             <div className="navbar-content">
-            <div className="logo-container">
+                <div className="logo-container">
                     <img src={logo} alt="Logo" className="logo" />
-                </div>
+                
+                <div className='info'>
                 <h1 className="project-name">VISSIPASS</h1>
                 <p className="tagline">Your Easy Path to a Civilized Visitor Management Experience!</p>
+                </div>
+                </div>
                 <ul className="nav-menu">
                     {isAuthenticated ? (
                         <>
-                            <li onClick={() => handleLinkClick('/dashboard')}><Link to="/dashboard">Dashboard</Link></li>
-                            <li onClick={() => handleLinkClick('/record-list')}><Link to="/record-list">Review Pass</Link></li>
-                            <li onClick={() => handleLinkClick('/generate-pass')}><Link to="/generate-pass">Generate Pass</Link></li>
-                            <li onClick={() => handleLinkClick('/generated-pass')}><Link to="/generated-pass">Current Holdings</Link></li>
-                            <li onClick={() => handleLinkClick('/verify-pass')}><Link to="/verify-pass">Verify Record</Link></li>
-                            <li onClick={() => handleLinkClick('/archive')}><Link to="/archive">Archive</Link></li>
+                            <li><Link to="/dashboard" onClick={() => handleLinkClick('/dashboard')}>Dashboard</Link></li>
+                            <li><Link to="/record-list" onClick={() => handleLinkClick('/record-list')}>Review Pass</Link></li>
+                            <li><Link to="/generate-pass" onClick={() => handleLinkClick('/generate-pass')}>Generate Pass</Link></li>
+                            <li><Link to="/generated-pass" onClick={() => handleLinkClick('/generated-pass')}>Current Holdings</Link></li>
+                            <li><Link to="/verify-pass" onClick={() => handleLinkClick('/verify-pass')}>Verify Record</Link></li>
+                            <li><Link to="/archive" onClick={() => handleLinkClick('/archive')}>Archive</Link></li>
                             <li className="profile-section">
                                 <FontAwesomeIcon 
                                     icon={faUser} 
@@ -78,7 +80,7 @@ const Navbar = () => {
                                 />
                                 {showDropdown && (
                                     <div className="profile-dropdown">
-                                        <p><img src={result} alt="User Avatar" className="user-avatar" />  Logged in User:</p>
+                                        <p><img src={result} alt="User Avatar" className="user-avatar" /> Logged in User:</p>
                                         <p>Access Level: <strong>Admin</strong></p>
                                         <p>Username: <strong>{userData.name}</strong></p>
                                         <p>Email: <strong>{userData.email}</strong></p>
@@ -89,11 +91,10 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <li onClick={() => handleLinkClick('/')}><Link to="/">Home</Link></li>
-                            <li onClick={() => handleLinkClick('/about')}><Link to="/about">About</Link></li>
-                            <li onClick={() => handleLinkClick('/login')}><Link to="/login">Login/Register</Link></li>
-                            <li onClick={() => handleLinkClick('/verify-pass')}><Link to="/verify-pass">Verify Record</Link></li>
-                           {/*  <li onClick={() => handleLinkClick('/reset-password')}><Link to="/reset-password">Reset Password</Link></li> */}
+                            <li><Link to="/" onClick={() => handleLinkClick('/')}>Home</Link></li>
+                            <li><Link to="/about" onClick={() => handleLinkClick('/about')}>About</Link></li>
+                            <li><Link to="/login" onClick={() => handleLinkClick('/login')}>Login/Register</Link></li>
+                            <li><Link to="/verify-pass" onClick={() => handleLinkClick('/verify-pass')}>Verify Record</Link></li>
                         </>
                     )}
                 </ul>

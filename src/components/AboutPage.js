@@ -1,60 +1,53 @@
+// src/components/AboutUs.js
+
 import React from 'react';
-import './AboutPage.css'; // For styles
+import './AboutPage.css';
 
 const AboutPage = () => {
     return (
-        <div className="aboutpage">
-            <header className="header">
-                <h1>About Visitor Pass Generation</h1>
-                <p className="header-description">
-                    Your trusted solution for efficient visitor management.
+        <div>
+        <div className="about-us-page">
+            <header className="about-us-header">
+                <h1>About VissiPass</h1>
+                <p className="about-us-intro">
+                    VissiPass is your all-in-one visitor management solution for schools, colleges, businesses, and organizations. Our platform streamlines visitor tracking, data management, and security, all tailored to fit your organization’s needs.
                 </p>
             </header>
-            <main className="content">
-                <section className="info-section">
-                    <h2>Our Mission</h2>
-                    <p>
-                        At Visitor Pass Generation, our mission is to streamline the process of creating visitor passes for businesses and organizations. We understand the importance of security and efficiency in managing guest access.
-                    </p>
-                </section>
 
-                <section className="info-section">
-                    <h2>Why Choose Us?</h2>
-                    <p>
-                        Our system offers numerous benefits, including user-friendly interfaces and customizable passes to fit your organization’s needs.
-                    </p>
-                </section>
+            <section className="about-us-mission">
+                <h2>Our Mission</h2>
+                <p>
+                    At VissiPass, we aim to provide a secure, user-friendly platform that caters to modern organizational needs. We prioritize data security, customizable visitor passes, and efficient visitor tracking in real time.
+                </p>
+            </section>
 
-                <section className="info-section">
-                    <h2>Our Features</h2>
-                    <ul>
-                        <li>Customizable Pass Templates</li>
-                        <li>Real-Time Tracking of Visitor Data</li>
-                        <li>Secure and Compliant Access Management</li>
-                        <li>User-Friendly Interface</li>
-                        <li>24/7 Customer Support</li>
-                    </ul>
-                </section>
+            <section className="about-us-features">
+                <h2>Why Choose VissiPass?</h2>
+                <ul className="features-list">
+                    <li><strong>Customizable Pass Templates:</strong> Tailor visitor passes with specific branding and access details.</li>
+                    <li><strong>Real-Time Tracking:</strong> Monitor visitor check-ins and check-outs effortlessly.</li>
+                    <li><strong>Secure and Confidential:</strong> All data is securely managed, ensuring visitor information remains confidential.</li>
+                    <li><strong>User-Friendly Interface:</strong> A simple, intuitive interface makes visitor management easy.</li>
+                </ul>
+            </section>
 
-                {/* Terms and Conditions Section */}
-                <section className="info-section">
-                    <h2>Terms and Conditions</h2>
-                    <p>By using our service, you agree to the following terms and conditions:</p>
-                    <ul>
-                        <li>We provide visitor pass generation services for businesses and organizations.</li>
-                        <li>The passes generated are valid only within the confines of the organization’s premises.</li>
-                        <li>All personal data collected through the service is stored securely and used strictly for visitor management purposes.</li>
-                        <li>Visitors must present their generated passes upon entry to the premises.</li>
-                        <li>We reserve the right to modify or terminate the service at any time without prior notice.</li>
-                    </ul>
-                    <p>
-                        For more details, please refer to our <a href="/privacy-policy" className="link">Privacy Policy</a> and <a href="/support" className="link">Support</a>.
-                    </p>
-                </section>
-            </main>
-            <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+            <section className="about-us-privacy">
+                <h2>Privacy & Data Security</h2>
+                <p>
+                    We take privacy seriously. All personal data collected is securely stored and used solely for visitor management purposes. VissiPass follows industry-standard security practices to safeguard visitor information.
+                </p>
+                <p>
+                    Our passes are valid only within your organization’s premises, ensuring data is handled responsibly and confidentially.
+                </p>
+            </section>
+           
+        </div>
+
+        <div>
+             <footer className="about-us-footer">
+                <p>&copy; {new Date().getFullYear()} VissiPass. All Rights Reserved. | <a href="/privacy-policy">Privacy Policy</a></p>
             </footer>
+        </div>
         </div>
     );
 };

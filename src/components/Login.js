@@ -31,6 +31,7 @@ export function Login() {
     };
 
     return (
+        <div>
         <section className="auth-container">
             <div className="auth-card">
                 {showForgotPassword ? (
@@ -114,7 +115,14 @@ export function Login() {
                     </>
                 )}
             </div>
+           
         </section>
+         <div className="auth-footer">
+         <footer className="verify-pass-footer">
+             <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
+         </footer>
+         </div>
+         </div>
     );
 }
 
