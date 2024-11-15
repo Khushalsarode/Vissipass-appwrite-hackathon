@@ -1,35 +1,33 @@
-/* src/components/Dashboard.css */
-
 /* General Dashboard Styling */
 .dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px; /* Increased padding for a more spacious layout */
-    background-color: var(--dashboard-bg-color); /* Theme-based background */
-    border-radius: 15px; /* Rounded corners for a softer look */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    padding: 30px;
+    background-color: var(--dashboard-bg-color); /* Dynamic background color based on theme */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 1100px;
-    margin: 20px auto; /* Centered and some margin */
+    margin: 20px auto;
 }
 
 /* Dashboard Header */
 .dashboard-header {
     text-align: center;
-    margin-bottom: 30px; /* Increased margin for spacing */
+    margin-bottom: 30px;
 }
 
 /* Welcome Message Styling */
 .welcome-message {
-    font-size: 1.2em; /* Slightly larger message text */
-    color: var(--text-color-muted); /* Theme-based muted text */
-    font-weight: 500; /* Slightly bolder text for emphasis */
+    font-size: 1.2em;
+    color: var(--text-color-muted); /* Muted text color */
+    font-weight: 500;
 }
 
 /* Dashboard Content */
 .dashboard-content {
     width: 100%;
-    max-width: 900px; /* Limit max width for better readability */
+    max-width: 900px;
 }
 
 /* Profile Overview Section Padding */
@@ -40,18 +38,18 @@
 
 /* Dashboard Section Styling */
 .dashboard-section {
-    background: var(--section-bg-color); /* Theme-based section background */
-    padding: 20px; /* More padding for comfortable space */
-    margin-bottom: 20px; /* Increased margin between sections */
-    border-radius: 12px; /* More rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
-    transition: transform 0.2s ease-in-out; /* Smooth animation */
+    background: var(--section-bg-color); /* Dynamic section background color */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
 }
 
 /* Hover effect for sections */
 .dashboard-section:hover {
-    transform: translateY(-5px); /* Slightly stronger hover effect */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Bigger shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Section Headings */
@@ -59,19 +57,19 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    font-size: 1.6em; /* Larger heading */
-    color: var(--text-color-heading); /* Theme-based heading color */
-    font-weight: 600; /* Stronger emphasis on the section title */
+    font-size: 1.6em;
+    color: var(--text-color-heading); /* Dynamic heading color */
+    font-weight: 600;
 }
 
 /* Section Paragraph Text */
 .dashboard-section p {
-    color: var(--text-color); /* Theme-based text color */
+    color: var(--text-color); /* Dynamic text color */
     font-size: 1em;
-    line-height: 1.6; /* Better readability */
+    line-height: 1.6;
 }
 
-/* Light Theme (default) */
+/* Light Theme */
 body.light {
     background-color: #ffffff;
     color: #333;
@@ -105,7 +103,7 @@ body.dark {
 .dashboard .settings-options {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* More space between settings buttons */
+    gap: 15px;
     margin-top: 20px;
 }
 
@@ -113,15 +111,17 @@ body.dark {
 .toggle-theme,
 .clear-cache,
 .delete-data,
+.change-password,
+.change-passowrd-submit,
 .delete-account {
-    padding: 12px 20px; /* Larger buttons for better clickability */
+    padding: 12px 20px;
     font-size: 1em;
     font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    text-align: center; /* Ensure button text is centered */
+    text-align: center;
 }
 
 /* Button colors */
@@ -142,7 +142,20 @@ body.dark {
 .clear-cache:hover {
     background-color: #e0a800;
 }
-
+.change-password {
+    background-color: #28a745;
+    color: white;
+}
+.change-password:hover {
+    background-color: #218838;
+}
+.change-passowrd-submit{
+    background-color: #28a745;
+    color: white;
+}
+.change-passowrd-submit:hover {
+    background-color: #218838;
+}
 .delete-data {
     background-color: #fd7e14;
     color: white;
@@ -207,3 +220,99 @@ body.dark {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+/* General Styles for Analytics Content */
+.analytics-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive Grid */
+    gap: 20px;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .analytics-card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .analytics-card h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+  
+  .analytics-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .analytics-card ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+  }
+  
+  .admin-users {
+    background-color: var(--admin-card-bg);
+  }
+  
+  .admin-users ul li {
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  /* Light Mode Styles */
+  .light-mode {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --card-bg-color: #fff;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --heading-color: #1e2a3a;
+    --admin-card-bg: #eaf2f7;
+  }
+  
+  /* Dark Mode Styles */
+  .dark-mode {
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --card-bg-color: #333;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --heading-color: #fff;
+    --admin-card-bg: #1c1c1c;
+  }
+  
+  /* Optional: Adding styles for the theme toggle button */
+  .theme-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--card-bg-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .theme-toggle-button:hover {
+    background-color: var(--card-shadow);
+    color: var(--text-color);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .analytics-content {
+      grid-template-columns: 1fr; /* Single column layout on small screens */
+    }
+  }
+  

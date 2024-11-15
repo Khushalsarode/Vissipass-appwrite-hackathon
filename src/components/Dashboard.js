@@ -20,7 +20,6 @@ const Dashboard = () => {
     
     const [loading, setLoading] = useState(true); // Loading state
 
-    const [result, setResult] = useState('');
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -251,8 +250,9 @@ const Dashboard = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
         if (confirmDelete) {
             try {
+                const userId = userData.$id;
                 // Delete the user account
-                await account.delete(); // This deletes the authenticated user's account
+                await account.delete(userId); // This deletes the authenticated user's account
     
                 toast.success("Account deleted successfully.");
                 window.location.href = '/login'; // Redirect to the login page
@@ -267,42 +267,45 @@ const Dashboard = () => {
     
 
 
-    useEffect(() => {
+    
+      const [analyticsData, setAnalyticsData] = useState(null);
+
+      useEffect(() => {
+        // Initialize Appwrite Client
         const client = new Client();
         client
-          .setEndpoint(process.env.REACT_APP_APPWRITE_ENDPOINT) // Ensure correct endpoint
-          .setProject(process.env.REACT_APP_APPWRITE_PROJECT_ID); // Ensure correct project ID
+          .setEndpoint(process.env.REACT_APP_APPWRITE_ENDPOINT)
+          .setProject(process.env.REACT_APP_APPWRITE_PROJECT_ID);
     
         const functions = new Functions(client);
     
-        // Trigger the function call
+        // Call the Appwrite function
         functions
-          .createExecution(process.env.REACT_APP_APPWRITE_FUNCTION_ID_GETUSERLOGS, JSON.stringify({}))
+          .createExecution(process.env.REACT_APP_APPWRITE_FUNCTION_ID_GETUSERLOGS)
           .then((response) => {
             let responseBody = response.responseBody;
-            console.log("responseBody", responseBody);
     
             try {
-              // Attempt to parse the response
-              responseBody = JSON.parse(responseBody);
-              
-              // Handle parsed response (assuming you expect logs and a message)
-              setResult(responseBody.message || 'Visitor Data fetched successfully');
-              setRecentActivity(responseBody.logs || []);
-              console.log("responseBody.logs", responseBody.logs);
+              // Parse responseBody to JSON
+              const data = JSON.parse(responseBody);
+              setAnalyticsData(data); // Save data to state
             } catch (error) {
-              // If parsing fails, show raw response
-              setResult('Error parsing response');
+              console.error('Failed to parse responseBody:', responseBody, error);
+              setAnalyticsData({ error: 'Failed to parse response data' });
             }
     
-            setLoading(false); // Set loading state to false once the data is fetched
+            setLoading(false);
           })
           .catch((error) => {
-            // Handle any errors
-            setResult(`Error: ${error.message}`);
+            console.error('Error fetching analytics:', error);
+            setAnalyticsData({ error: error.message });
             setLoading(false);
           });
-      }, []); // Empty dependency array means this will run once after initial render
+      }, []);
+      if (!analyticsData) {
+        return <div>Loading...</div>;
+      }
+    
     
 
     return (
@@ -329,12 +332,12 @@ const Dashboard = () => {
                     {/* Profile Overview Section */}
                     <section className="dashboard-section profile-overview">
                         <h2><FontAwesomeIcon icon={faUser} /> &nbsp; Personl Information </h2>
-                        User ID: {profile.userId} <br/>
-                        Username: {profile.username} <br/>
-                        Access Level: <strong>Admin</strong> <br/>
-                        Email: {profile.email} <br/>
-                        Member Since: {profile.createdAt}   <br/>
-                        Location: {profile.location} <br/>
+                        <strong>User ID: {profile.userId}</strong> <br/>
+                        <strong>Username: {profile.username}</strong> <br/>
+                        <strong>Access Level: <strong>Admin</strong> </strong><br/>
+                        <strong>Email: {profile.email} <br/></strong>
+                        <strong>Member Since: {profile.createdAt} </strong>  <br/>
+                        <strong>Location: {profile.location} </strong><br/>
                         Access Location: <img src={Cflag} alt="Profile" className="profile-picture" /> <br/>    
                         {/* <img src={profile.profilePicture} alt="Profile" className="profile-picture" /> */}
                     </section>
@@ -372,26 +375,79 @@ const Dashboard = () => {
                         <strong>Last Password Change: </strong> {profile.lastPasswordChange}
                     </section>
 
-                    {/* Application Analytics section */}
-                    <section className="dashboard-section analytics">
-                        <h2><FontAwesomeIcon icon={faChartLine} /> &nbsp; Application Analytics</h2>
-                        <p>Coming soon...</p>
-                        <div>
-                            <h1>User Logs</h1>
-                            <div>{result}</div>
-                            <h2>Recent Activity:</h2>
-                            <ul>
-                                {recentActivity.length > 0 ? (
-                                recentActivity.map((log, index) => (
-                                    <li key={index}>{log}</li>
-                                ))
+                     {/* Application Analytics Section */}
+                     <section className="dashboard-section analytics">
+                            <h2>
+                            <FontAwesomeIcon icon={faChartLine} /> &nbsp; Application Analytics
+                            </h2>
+                            {loading ? (
+                                <p>Loading analytics data...</p>
+                                ) : analyticsData?.error ? (
+                                <p className="error-message">Error: {analyticsData.error}</p>
                                 ) : (
-                                <li>No recent activity found</li>
+                                <div className="analytics-content">
+                                    {/* Synced Operator Accounts */}
+                                    <div className="analytics-card">
+                                    <h5>Synced Operator Accounts</h5>
+                                    <ul>
+                                        <li>Current Operating Users: {analyticsData.totalUsers}</li>
+                                    </ul>
+                                    </div>
+
+                                    {/* Data Storage Distribution */}
+                                    <div className="analytics-card">
+                                    <h5>Data Storage Distribution</h5>
+                                    <ul>
+                                        <li>DataStorage: {analyticsData.database}</li>
+                                        <li>Sub DataStorage: {analyticsData.collectionId}</li>
+                                    </ul>
+                                    </div>
+
+                                    {/* Users Details */}
+                                    <div className="analytics-card">
+                                    <h5>Users Details</h5>
+                                    <ul>
+                                        <li>Total Records Under Revive: {analyticsData.documents}</li>
+                                        <li>Archived Records: {analyticsData.documentsarchieve}</li>
+                                        <li>Active Passes: {analyticsData.documentsuserdata}</li>
+                                    </ul>
+                                    </div>
+
+                                    {/* Hard Storage */}
+                                    <div className="analytics-card">
+                                    <h5>Hard Storage</h5>
+                                    <ul>
+                                        <li>Contains Parts: {analyticsData.totalBuckets}</li>
+                                        <li>Images Handled: {analyticsData.bucketsfiles}</li>
+                                        <li>QR Code Processed: {analyticsData.QRbucketsfiles}</li>
+                                    </ul>
+                                    </div>
+
+                                    {/* Remote Verify and Checks */}
+                                    <div className="analytics-card">
+                                    <h5>Remote Verify and Checks</h5>
+                                    <ul>
+                                        <li>Remote Function: {analyticsData.totalfunctions}</li>
+                                        <li>Wonder this data display!: {analyticsData.getdataremote}</li>
+                                        <li>Checks Done!: {analyticsData.getqrdata}</li>
+                                    </ul>
+                                    </div>
+
+                                    {/* Admin Users Section */}
+                                    <div className="analytics-card admin-users">
+                                    <h5>Admin User Details</h5>
+                                    <ul>
+                                        {analyticsData.users?.map((user) => (
+                                        <li key={user.id}>
+                                            {user.name} (ID: {user.id})
+                                        </li>
+                                        ))}
+                                    </ul>
+                                    </div>
+                                </div>
                                 )}
-                            </ul>
-                            </div>
-                                                                    
-                    </section>
+                        </section>
+
                     {/* Settings Section */}
                     <section className="dashboard-section settings">
                         <h2><FontAwesomeIcon icon={faCog} /> &nbsp; Settings</h2>
@@ -405,7 +461,7 @@ const Dashboard = () => {
 
                             <label>Account Access: </label>
                             {/* Toggle Change Password Form */}
-                            <button onClick={() => setShowChangePassword(prev => !prev)}>
+                            <button className="change-password" onClick={() => setShowChangePassword(prev => !prev)}>
                                 {showChangePassword ? "Cancel Change Password" : "Change Password"}
                             </button>
 
@@ -424,7 +480,7 @@ const Dashboard = () => {
                                         value={newPassword} 
                                         onChange={(e) => setNewPassword(e.target.value)} 
                                     />
-                                    <button onClick={handleChangePassword}>Submit</button>
+                                    <button className="change-passowrd-submit" onClick={handleChangePassword}>Submit</button>
                                 </div>
                             )}
 
