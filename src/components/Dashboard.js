@@ -250,8 +250,9 @@ const Dashboard = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
         if (confirmDelete) {
             try {
+                const userId = userData.$id;
                 // Delete the user account
-                await account.delete(); // This deletes the authenticated user's account
+                await account.delete(userId); // This deletes the authenticated user's account
     
                 toast.success("Account deleted successfully.");
                 window.location.href = '/login'; // Redirect to the login page
