@@ -61,6 +61,7 @@ const Archieve = () => {
     }, []);
 
     return (
+        <div>
         <div className="achieve">
             <h2>Archived Records</h2>
             {archivedRecords.length === 0 ? (
@@ -111,7 +112,9 @@ const Archieve = () => {
                     </tbody>
                 </table>
             )}
-             <footer className="footer">
+             
+        </div>
+        <footer className="footer">
                 <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
             </footer>
         </div>

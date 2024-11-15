@@ -56,6 +56,7 @@ function VerifyVisitorPass() {
   };
 
   return (
+    <div>
     <div className="verify-pass-container">
       <div className="verify-pass-content">
         <h2 className="verify-pass-title">Verify Visitor Pass</h2>
@@ -92,7 +93,9 @@ function VerifyVisitorPass() {
         </div>
       </div>
 
-      <footer className="verify-pass-footer">
+      
+    </div>
+    <footer className="verify-pass-footer">
         <p>&copy; {new Date().getFullYear()} Visitor Pass Generation. All Rights Reserved.</p>
       </footer>
     </div>
