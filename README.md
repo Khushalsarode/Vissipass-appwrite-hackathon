@@ -19,7 +19,7 @@
 VissiPass is a digital pass generation system tailored for seamless and secure visitor management in organizations. Built using **React.js** for a dynamic frontend and **Appwrite services** for robust backend support, VissiPass empowers organizations with a reliable, transparent, and hassle-free visitor management solution. 
 
 ## 📑 Table of Contents
-- [Tech Stack](##tech-stack)
+- [Tech Stack](#tech-stack)
 - [Modules](#modules)
 - [Pass Information](#pass-information)
 - [Features](#features)
@@ -38,6 +38,7 @@ VissiPass is a digital pass generation system tailored for seamless and secure v
 - **Backend**: Appwrite
   - **Appwrite Services Used**: Storage, Auth, Database, Functions
   - **Authentication**: OAuth2 (Google, GitHub) and Appwrite’s Autonomous Auth
+  - **Mailserver**: Resend, Node, Express
 
 ## 🧩 Modules
 
