@@ -1,7 +1,7 @@
 # 🎫 VissiPass
 **Your Easy Path to a Civilized Visitor Management Experience!** <br> <br>
-![Work in Progress](https://img.shields.io/badge/Work_in_Progress-Yes-green)<br><br>
-![Work Done](https://img.shields.io/badge/Progress-97%25-brightgreen)<br><br>
+<!--![Work in Progress](https://img.shields.io/badge/Work_in_Progress-Yes-green)<br><br>-->
+<!--![Work Done](https://img.shields.io/badge/Progress-97%25-brightgreen)<br><br> -->
 ![React](https://img.shields.io/badge/frontend-react-blue?logo=react&logoColor=white)
 ![Appwrite](https://img.shields.io/badge/backend-appwrite-red?logo=appwrite&logoColor=white)
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue)
@@ -9,8 +9,6 @@
  <!-- ![Repo Size](https://img.shields.io/github/repo-size/khushalsarode.appwrite-hackathon) -->
 ![Docs](https://img.shields.io/badge/docs-complete-brightgreen)
 ![Issues](https://img.shields.io/github/issues/khushalsarode/appwrite-hackathon)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
-![Contributors](https://img.shields.io/github/contributors/khushalsarode/appwrite-hackathon)
 ![Forks](https://img.shields.io/github/forks/khushalsarode/appwrite-hackathon?style=social)
 ![Stars](https://img.shields.io/github/stars/khushalsarode/appwrite-hackathon?style=social)
 ![Last Commit](https://img.shields.io/github/last-commit/khushalsarode/appwrite-hackathon)
