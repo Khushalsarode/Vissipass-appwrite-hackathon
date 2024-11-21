@@ -1,95 +1,130 @@
 /* src/components/HomePage.css */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
     color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* light cream background */
 }
 
 .homepage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f7f8fa;
+    background-color: #f8f9fa; /* light cream background */
+    color: #333; /* dark text */
 }
 
 .header {
-    background-color: #9aa4b1;
-    color: #fff;
-    padding: 60px 20px;
+    background-color: #fff; /* clean white */
+    color: #333; /* dark text */
+    padding: 80px 20px;
     text-align: center;
     width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
 }
 
 .header-title {
     font-size: 3em;
-    font-weight: bold;
+    font-weight: 600;
+    color: #222; /* dark text */
+    margin-bottom: 10px;
 }
 
 .header-tagline {
     font-size: 1.2em;
+    font-weight: 300;
+    color: #555; /* soft gray */
     margin: 10px 0;
 }
 
 .header-description {
-    font-size: 1em;
+    font-size: 1.1em;
+    color: #666; /* lighter gray */
     margin: 20px 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .create-pass-button {
-    background-color: #ffaa00;
-    border: none;
-    color: white;
+    background-color: #333; /* dark background */
+    color: #fff;
     padding: 15px 30px;
     font-size: 1.1em;
-    border-radius: 5px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
 }
 
 .create-pass-button:hover {
-    background-color: #e69700;
+    background-color: #222; /* dark hover */
+    transform: translateY(-2px); /* subtle lift effect */
 }
 
 .content {
     max-width: 1200px;
     width: 100%;
-    padding: 40px 20px;
+    padding: 60px 20px;
+    margin: 0 auto;
 }
 
-.features-section, .how-it-works-section {
-    margin-bottom: 40px;
+.features-section,
+.how-it-works-section {
+    margin-bottom: 60px;
     text-align: center;
 }
 
 .section-title {
-    font-size: 2em;
-    color: #004aad;
-    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #333; /* dark text */
+    margin-bottom: 30px;
 }
 
 .section-description {
-    font-size: 1em;
-    color: #666;
+    font-size: 1.1em;
+    color: #666; /* light gray */
     margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .feature-item {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-item h3 {
-    color: #ffaa00;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    color: #333; /* dark text */
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    color: #777; /* soft gray */
+    font-size: 1em;
+}
+
+.feature-item:hover {
+    transform: translateY(-4px); /* subtle lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* more pronounced shadow */
 }
 
 .how-it-works-section .steps-list {
@@ -97,19 +132,27 @@ body {
     font-size: 1.1em;
     color: #333;
     padding-left: 0;
+    margin-top: 20px;
 }
 
+.how-it-works-section .steps-list li {
+    margin-bottom: 20px;
+    color: #555;
+}
 
 .footer {
-    background-color: #333;
+    background-color: #222; /* dark background */
     color: #fff;
     text-align: center;
     padding: 20px 0;
     width: 100%;
+    position: relative;
+    bottom: 0;
 }
 
 .footer-text {
     font-size: 0.9em;
+    color: #aaa; /* light gray */
     margin: 0;
 }
 
@@ -127,9 +170,9 @@ body {
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
     max-width: 600px;
     width: 100%;
     position: relative;
@@ -141,7 +184,8 @@ body {
     right: 10px;
     background: none;
     border: none;
-    font-size: 1.5em;
+    font-size: 1.6em;
     color: #333;
     cursor: pointer;
+    font-weight: 600;
 }

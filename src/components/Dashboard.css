@@ -81,13 +81,20 @@ body.dark {
     color: #ffffff;
 }
 
-/* Theme-based color variables */
+/* Light Theme */
 :root {
     --dashboard-bg-color: #f8f9fa; /* Light theme background */
     --section-bg-color: white; /* Light theme section background */
     --text-color: #495057; /* Light theme text color */
     --text-color-heading: #343a40; /* Darker text color for headings */
     --text-color-muted: #6c757d; /* Muted text color */
+    --link-color: #007bff; /* Light blue links */
+    --border-color: #e0e0e0; /* Subtle border color */
+    --card-bg-color: #ffffff; /* White cards */
+    --card-shadow: rgba(0, 0, 0, 0.1); /* Soft shadow for cards */
+    --heading-font-size: 24px; /* Heading font size */
+    --subheading-font-size: 18px; /* Subheading font size */
+    --paragraph-font-size: 14px; /* Paragraph font size */
 }
 
 /* Dark Theme Overrides */
@@ -97,8 +104,11 @@ body.dark {
     --text-color: #f8f9fa; /* Dark theme text color */
     --text-color-heading: #ffffff; /* Dark theme heading color */
     --text-color-muted: #adb5bd; /* Dark theme muted text color */
+    --link-color: #4fa3f7; /* Soft blue for links in dark mode */
+    --border-color: #444; /* Darker border color */
+    --card-bg-color: #1e1e1e; /* Dark theme cards */
+    --card-shadow: rgba(255, 255, 255, 0.1); /* Subtle light shadow for dark mode cards */
 }
-
 /* Settings Buttons */
 .dashboard .settings-options {
     display: flex;
@@ -315,4 +325,6 @@ body.dark {
       grid-template-columns: 1fr; /* Single column layout on small screens */
     }
   }
+  
+
   

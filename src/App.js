@@ -18,7 +18,7 @@ import Verify from './components/Verify';
 import ResetPassword from './components/ResetPassword'; 
 import Archieve from './components/Archieve';
 import VerifyVisitorPass from './components/VerifyVisitorPass';
-
+//import './App.css';
 function AppRoutes() {
     const location = useLocation();
 

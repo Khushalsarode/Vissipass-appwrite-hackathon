@@ -456,7 +456,7 @@ const Dashboard = () => {
                         
                                 <label>Theme: </label>
                                 <button onClick={toggleTheme} className="toggle-theme">
-                                    {theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
+                                    {theme === 'light' ? 'Switch to Dark 🌙' : 'Switch to Light 🌞'}
                                 </button>
 
                             <label>Account Access: </label>

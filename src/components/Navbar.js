@@ -1,5 +1,3 @@
-// src/components/Navbar.js
-
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
@@ -14,6 +12,7 @@ import logo from '../logo/logo2.png';
 const Navbar = () => {
     const { isAuthenticated, userData, setIsAuthenticated } = useUser();
     const [showDropdown, setShowDropdown] = useState(false);
+    //const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Track theme
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -24,6 +23,15 @@ const Navbar = () => {
         30
     );
 
+    
+   {/* // Toggle theme function 
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme); // Save theme to localStorage
+        document.body.className = newTheme; // Apply the theme to the body
+    };
+*/}
     const handleLogout = async () => {
         if (!isAuthenticated) {
             toast.info("Already logged out.");
@@ -56,11 +64,10 @@ const Navbar = () => {
             <div className="navbar-content">
                 <div className="logo-container">
                     <img src={logo} alt="Logo" className="logo" />
-                
-                <div className='info'>
-                <h1 className="project-name">VISSIPASS</h1>
-                <p className="tagline">Your Easy Path to a Civilized Visitor Management Experience!</p>
-                </div>
+                    <div className='info'>
+                        <h1 className="project-name">VISSIPASS</h1>
+                        <p className="tagline">Your Easy Path to a Civilized Visitor Management Experience!</p>
+                    </div>
                 </div>
                 <ul className="nav-menu">
                     {isAuthenticated ? (
@@ -97,6 +104,13 @@ const Navbar = () => {
                             <li><Link to="/verify-pass" onClick={() => handleLinkClick('/verify-pass')}>Verify Record</Link></li>
                         </>
                     )}
+                    {/* Theme toggle button 
+                    <li>
+                        <button className="theme-toggle" onClick={toggleTheme}>
+                            {theme === 'light' ? '🌙' : '🌞'}
+                        </button>
+                    </li>
+                    */}
                 </ul>
             </div>
         </nav>

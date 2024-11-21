@@ -1,11 +1,10 @@
-/* src/components/Navbar.css */
-
 :root {
-    --primary-color: #4b6584;
-    --secondary-color: #3867d6;
-    --text-color: #fff;
-    --background-color: #1e272e;
-    --hover-color: #576574;
+    --primary-color: #262626; /* Dark black for text and key elements */
+    --secondary-color: #b0bec5; /* Subtle gray for hover or accents */
+    --background-color: #fff; /* Clean white background */
+    --hover-color: #5147470c; /* Light cream for hover effects */
+    --text-color: #333; /* Text color */
+    --border-color: #e0e0e0; /* Subtle light border color */
 }
 
 .navbar {
@@ -14,7 +13,8 @@
     color: var(--text-color);
     display: flex;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border-bottom: 1px solid var(--border-color); /* Minimal bottom border */
 }
 
 .navbar-content {
@@ -30,28 +30,28 @@
     align-items: center;
     margin-right: 1rem;
 }
-.info{
-    align-items: center;
-    margin-right: 1rem;    
 
+.info {
+    align-items: center;
+    margin-right: 1rem;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    padding-right: 50px;
+    width: 40px; /* Slightly smaller logo */
+    height: 40px;
+    padding-right: 20px;
 }
 
 .project-name {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: var(--primary-color);
+    margin-bottom: 0.3rem;
 }
 
 .tagline {
-    font-size: 10px;
-    color: #b0bec5;
-    align-items: center;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
 }
 
 .nav-menu {
@@ -63,18 +63,21 @@
 
 .nav-menu li {
     font-size: 1rem;
-    padding: 1px;
-    
+    padding: 0.5rem 0;
 }
 
 .nav-menu li a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-menu li a:hover {
     color: var(--secondary-color);
+    background-color: var(--hover-color);
+    padding: 0.2rem 0.5rem; /* Slight padding on hover */
+    border-radius: 4px; /* Subtle rounded corners */
 }
 
 .profile-section {
@@ -82,9 +85,10 @@
 }
 
 .profile-icon {
-    font-size: 1.5rem;
-    color: white;
-    transition: color 0.3s;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
 .profile-icon:hover {
@@ -92,41 +96,74 @@
 }
 
 .profile-dropdown {
-    
     position: absolute;
     top: 250%;
-    right: 5px;
-    width: 350px;
-    background-color: white;
-    color: var(--text-color);
+    right: 0;
+    width: 250px; /* Smaller dropdown */
+    background-color: #fff;
+    color: var(--primary-color);
     padding: 1rem;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-   /* min-width: 200px; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border-radius: 8px;
+    border: 1px solid var(--border-color); /* Light border */
     z-index: 10;
 }
 
 .user-avatar {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     margin-right: 0.5rem;
     vertical-align: middle;
 }
 
 .logout-button {
-    background-color: red;
-    color: black;
+    background-color: #f44336; /* Red background for logout */
+    color: #fff;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin-top: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
     width: 100%;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .logout-button:hover {
-    background-color: var(--primary-color);
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+
+/* Positioning the theme toggle button */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--light-text);
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--primary-color);
+}
+
+/* Hover and focus styles for better UX */
+.theme-toggle:focus {
+    outline: none;
+}
+
+/* CSS Variables for Light/Dark Mode */
+body.light .theme-toggle {
+    color: var(--light-text);
+}
+
+body.dark .theme-toggle {
+    color: var(--dark-text);
 }

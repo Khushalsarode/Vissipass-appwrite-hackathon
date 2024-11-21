@@ -5,7 +5,6 @@ import './AboutPage.css';
 
 const AboutPage = () => {
     return (
-        <div>
         <div className="about-us-page">
             <header className="about-us-header">
                 <h1>About VissiPass</h1>
@@ -41,14 +40,15 @@ const AboutPage = () => {
                 </p>
             </section>
            
-        </div>
-
-        <div>
+            <div>
              <footer className="about-us-footer">
                 <p>&copy; {new Date().getFullYear()} VissiPass. All Rights Reserved. | <a href="/privacy-policy">Privacy Policy</a></p>
             </footer>
         </div>
+        
         </div>
+
+       
     );
 };
 
